@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제어문2(switch_case)</title>
+</head>
+<body>
+    <h2>제어문2(switch_case) _ 선택문</h2>
+    <p>선택문(switch_case)은 사용자가 만든 조건이 만족할 때까지 계속실행하면서,
+        조건에 맞으면 실행. 프로그램이 그자리에서 멈춤.
+    </p>
+    <p>선택문은 조건식의 값이 정확히 일치해야할 때 사용. if문과의 차이가 있다</p>
+    <p>break 문 - 조건식의 원하는 값이 일치할 때. 프로그램이 현 위치에서 멈춤.</p>
+    <pre>
+        switch(변수){
+            case 1 : 실행할내용;break;   /*조건에 맞으면 멈추기*/
+            case 2 : 실행할내용;break;
+            case 3 : 실행할내용;break;
+            default : 실행할내용;
+        }
+    </pre>
+    <h3>실습1. 사용자가 입력한 숫자를 '홀수','짝수'인지 판단하기</h3>
+    <script>
+        let n = prompt('숫자를 입력하세요');
+        let res = n%2;
+        document.write(res+'<br>');   //0,1
+
+        switch(res){
+            case 0 : document.write('입력하신 숫자는 짝수입니다');break;
+            default : document.write('입력하신 숫자는 홀수입니다');
+        }
+    </script>
+
+    <h3>실습2. 등수별 상품출력 - 사용자가 입력한 번호를 통해 등수별 상품이 출력됨.</h3>
+    <pre>
+        1등 : 당첨! 해외여행상품권
+        2등 : 냉장고
+        3등 : 상품권
+        4등 : 꽝! 
+    </pre>
+    <script>
+        let res1 = prompt('등수를 입력하세요 예) 1등, 2등, 3등');
+
+        switch(res1){
+            case '1등' : document.write('축하합니다. 해외여행상품권에 당첨되셨습니다!');break;
+            case '2등' : document.write('축하합니다. 냉장고에 당첨되셨습니다.');break;
+            case '3등' : document.write('축하합니다. 상품권에 당첨되셨습니다');break;
+            default : document.write('아쉽습니다. 다음번에 도전하세요.');
+        }
+    </script>
+
+    <h3>실습3. 현재 날짜를 통해 요일 표시하기</h3>
+    <p>시간객체(Date)를 활용하여 요일번호를 구하고. switch case문을 통해 한글명 '요일'을 출력한다.</p>
+    <script>
+        let today = new Date();          // 현재시스템 날짜
+
+        document.write(today+'<br>');
+        document.write(today.getDay());  //일 0, 월 1, 화 2, 수 3, 목 4, 금 5, 토 6   : 요일번호구하기
+
+        let res2 = today.getDay();      //요일번호를 변수에 저장
+
+        document.write('<p>오늘은 ');
+        switch(res2){
+            case 0 : document.write('일');break;    //case에 요일번호 설정
+            case 1 : document.write('월');break;
+            case 2 : document.write('화');break;
+            case 3 : document.write('수');break;
+            case 4 : document.write('목');break;
+            case 5 : document.write('금');break;
+            default : document.write('토');
+        }
+        document.write('요일입니다</p>');  //요일출력
+
+    </script>
+</body>
+</html>

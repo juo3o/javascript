@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제_문자열객체(string) 활용한 이미지 갤러리</title>
+    <style>
+        *{margin: 0px; padding: 0px;}
+        ol,ul,li{list-style: none;}
+        a{text-decoration: none; color-scheme: #333;}
+        h2, p{padding: 10px;}
+
+        #tab_cont{
+            width: 1200px;
+            margin: 0px auto;
+            border: 3px solid#467ca2;
+        }
+        #tab_cont h3{display: none;}
+        #tab_cont .lnb{            
+            display: flex;
+        }
+        #tab_cont .lnb img{width: 100%; transition: 0.2s; display: block;}
+        #tab_cont .lnb img:hover{
+            filter: brightness(1.1);
+            transform: scale(1.05);
+        }
+        #tab_cont .lnb > li{
+            width: 20%;
+            overflow: hidden;
+        }
+        #photo{width: 100%;display: block;}
+    </style>
+</head>
+<body>
+    <h2>실습예제_문자열객체(string) 활용한 이미지 갤러리</h2>
+    <p>이미지 5장을 사용하여, 썸네일이미지 클릭 시 해당 이미지 나타나게 구현.</p>
+    <p>썸네일 이미지 클릭 시 함수를 활용하여 이미지src속성값을 찾아 변수에 저장하고 메인이미지태그의 src속성값에 대입하여 이미지 변동되도록 만든다</p>
+
+    <article id="tab_cont">
+        <h3>이미지 갤러리</h3>
+        <ul class="lnb">
+            <li><a href="#" title=""><img src="./images/img_main_banner_0.jpg" alt="" class="small"></a></li>
+            <li><a href="#" title=""><img src="./images/img_main_banner_1.jpg" alt="" class="small"></a></li>
+            <li><a href="#" title=""><img src="./images/img_main_banner_2.jpg" alt="" class="small"></a></li>
+            <li><a href="#" title=""><img src="./images/img_main_banner_3.jpg" alt="" class="small"></a></li>
+            <li><a href="#" title=""><img src="./images/img_main_banner_4.jpg" alt="" class="small"></a></li>
+        </ul>
+        <img src="./images/img_main_banner_0.jpg" alt="메인이미지" id="photo">
+    </article>
+
+    <script>
+        let s_img = document.querySelectorAll('.small');  //썸네일이미지 변수
+        let b_img = document.getElementById('photo');     //큰사진 변수
+
+        // 인덱스번호 초기값
+        let n = 0;        
+
+
+        //썸네일이미지 클릭 시 src주소값을 변수에 담기
+        for(let i=0;i<=s_img.length;i++){
+            console.log(s_img[i]);   //이미지태그출력 5개 확인
+            s_img[i].addEventListener('click', change_img);
+        }
+        //이미지변경 함수
+        function change_img(){
+            alert('이벤트확인');
+            let imgUrl = this.src;  //현재선택한 이미지의 src주소값을 변수에 저장
+
+            //큰사진의 src주소값에 위 변수값 대입하기 (replace - 문자치환)
+            b_img.src = b_img.src.replace(b_img.src, imgUrl);
+        }
+    </script>
+
+</body>
+</html>

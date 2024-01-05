@@ -1,0 +1,27 @@
+js - 개발언어
+jquery - 라이브러리언어(폰트어썸처럼 link 포함해야함)
+( 링크저장방식 또는  CDN방식(content delivery Network)있음)
+
+
+
+: 적용하는법
+https://jquery.com/download/
+
+
+1) 
+
+제이쿼리 홈페이지 -> 다운로드 ->
+1(스크립트 링크),
+2(최적화버전)번째 링크 다른이름으로 저장 
+(둘중 아무거나 사용)
+-> script파일에 저장
+-> vscode에 <script src로 붙여넣기>
+
+
+또는
+
+
+2)
+CDN -> googleCDN -> 2.x스니펫 복사붙여넣기  (호환성때문에 2버전 사용)
+
+https://developers.google.com/speed/libraries?hl=ko#jquery

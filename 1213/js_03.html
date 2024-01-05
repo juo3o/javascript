@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트로컨텐츠제작하기</title>
+</head>
+<body>
+    <h2>자바스크립트로컨텐츠제작하기</h2>
+    <p>자바스크립트 언어를 활용하여 다양한 컨텐츠 제작 실습하기</p>
+    <h3>웹페이지의 자바스크립트로 구현된 컨텐츠 정보 수집하기</h3>
+    <ul>
+        <li>네이버 날씨, 뉴스, 증시정보</li>
+        <li>언론사 아이콘목록, 좌우버튼</li>
+        <li>트렌드 쇼핑 컨텐츠</li>
+        <li>오늘 읽을 만한 글</li>
+        <li>새로고침 시 배너변경</li>
+        <li>쿠키정보를 활용한 '오늘 하루 열지 않음'</li>
+        <li>움직이는 이미지 슬라이드</li>
+        <li>패밀리사이트</li>
+        <li>버튼 클릭,hover 시 변경되는 모든 정보 컨텐츠</li>
+    </ul>
+
+    <h3>실습1. 전구 이미지 활용하여 버튼 클릭 시 이미지scr속성값을 변경하여 다른이미지가 나오게 하기</h3>
+    <img src="./img/pic_bulboff.gif" alt="전구끄기" id="bulb">
+    <input type="button" value="전구켜기" id="button_on">
+    <input type="button" value="전구끄기" id="button_off">
+
+
+    <h3>실습2. 이미지에 마우스 오버시 사진변경하기</h3>
+    <img src="./img/mbn04.png" alt="배너" id="banner">
+
+
+    <script>
+
+        // 실습1
+        const btn_on = document.getElementById('button_on');
+        const btn_off = document.getElementById('button_off'); //이름지정하기
+
+        btn_on.addEventListener('click',function(){ //전구켜기 버튼 클릭하면
+            // window.alert('버튼클릭');
+            document.getElementById('bulb').src='./img/pic_bulbon.gif';  //bulb 아이디 찾아서 .src 속성바꾼다
+        });
+
+        btn_off.addEventListener('click',function(){
+            // window.alert('버튼클릭');
+            document.getElementById('bulb').src='./img/pic_bulboff.gif'; //다시끄기
+        });
+
+
+
+        // 실습2
+
+        const hover = document.getElementById('banner');
+        hover.addEventListener('mouseover',function(){
+            document.getElementById('banner').src='./img/mbn04ov.png';
+        });
+        hover.addEventListener('mouseout',function(){
+            document.getElementById('banner').src='./img/mbn04.png';
+        });
+        
+    </script>
+</body>
+</html>

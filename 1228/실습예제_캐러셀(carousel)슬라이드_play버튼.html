@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>캐러셀(carousel)슬라이드</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
+    <!-- 슬라이드스크립트 -->
+    <script src="./script/slide.js" defer></script>
+    <!-- defer : 문서출력후 script 실행해줌 -->
+
+
+
+    <style>
+        *{margin: 0px; padding: 0px;}
+        ul, li{list-style: none;}
+        a{text-decoration: none; color: #333;}
+        h2,p{padding: 10px;}
+
+        .slide_wrapper{
+            /* width: 100%; 반응형으로 제작할때*/
+            width: 1200px; height: 468px;
+            margin: 0px auto;
+            background: #c15c5c;
+            border: 5px solid ;
+            position: relative;
+        }
+
+        .slide{
+            position: absolute;
+            left: 0px;
+            /* 기본값 left값 지정해야 오른쪽으로이동 */
+            display: flex;
+            width: 2040px;
+            /* width: 500%; 반응형으로 제작할때*/
+            transition: 0.5s;
+        }
+        .slide li{
+            /* width: 100%; 반응형으로 제작할때*/
+            margin-right: 60px;
+        }
+        .slide li:last-child{margin: 0px;}
+
+
+        /* 좌우버튼 */
+        #l_btn, #r_btn{
+            padding: 14px;
+            background: rgba(0,0,0,.7);
+            position: absolute; top: 45%;
+            color: #fff;
+        }
+        #r_btn{right: 0px;}
+        .fa-solid{
+            font-size: 30px;
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            color: #fff;
+        }
+        .fa-stop{right: 60px;}
+
+
+    </style>
+
+</head>
+<body>
+    <h2>캐러셀(carousel)슬라이드</h2>
+    <p>캐러셀(carousel) : css 3d 트랜스폼과 약간의 js로 만들어진, 일련의 콘텐츠를 순환시키는 슬라이드쇼.
+        <br> '이미지','텍스트','사용자정의마크업'으로 동작함.
+        <br>'이전/다음'컨트롤이나 '위치표시(인디게이터,indicator)'도 지원함.
+    </p>
+
+    <article class="slide_wrapper">
+        <ul class="slide">
+            <li><div><a href="#" title=""><img src="./images/img1.jpg" alt="이미지1"></a></div></li>
+            <li><div><a href="#" title=""><img src="./images/img2.jpg" alt="이미지2"></a></div></li>
+            <li><div><a href="#" title=""><img src="./images/img3.jpg" alt="이미지3"></a></div></li>
+            <li><div><a href="#" title=""><img src="./images/img4.jpg" alt="이미지4"></a></div></li>
+            <li><div><a href="#" title=""><img src="./images/img5.jpg" alt="이미지5"></a></div></li>
+        </ul> 
+        <a href="#" title="이전" id="l_btn">이전</a>
+        <a href="#" title="다음" id="r_btn">다음</a>
+        <i class="fa-solid fa-stop"></i>
+        <i class="fa-solid fa-play"></i>
+    </article>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제어문3(반복문_while, do while, for)</title>
+</head>
+<body>
+    <h2>제어문3(반복문_while, do while, for)</h2>
+    <p>반복수행할 때 사용. 조건문(if)이 프로그램을 지적으로 만들고 반복문은 프로그램을 강력하게 만듬.</p>
+    <p>주의점 : 조건을 잘못 설정하면 무한루프에 빠지는 오류. 브라우저에 화면 멈춤현상이 발생.</p>
+    <ul>
+        <li>while문 - 반복조건</li>
+        <li>do while문 - 반복조건</li>
+        <li>for문 - 반복횟수</li>
+    </ul>
+    <pre>
+        1. while문
+
+                while(조건식){
+                    실행할내용;
+                }
+
+
+        2. do while문
+
+                do{
+                    실행할내용
+                }
+                while(조건식)
+
+
+        3. for문
+
+                for(초기값;조건식;증감식){
+                    실행할내용;
+                }
+    </pre>
+    <h3>실습 - 반복문을 사용하여 숫자 1부터 10까지 출력하기 (ex. 페이지번호, 글번호, 달력) </h3>
+    <script>
+
+        //1.while문
+        let n = 1;                 // 초기값선언 : 1로 시작
+
+        while(n<=10){              //앞에 조건식 작성 : 조건에 만족할때까지 반복한다 :   n이 10이 될때까지 밑의 내용이 실행됨;
+
+            document.write(n);     //내용출력하고(1<=10 조건식에 안맞아도 출력 + 기존값에 하나씩 더함)
+            n++;                   //기존값에 1을 더한다 (n이 10 될때까지 반복)
+        }
+
+        document.write('<hr>');
+
+        //2. do while문
+        let n1 = 1;
+        do{
+            document.write(n1);
+            n1++;
+        }while(n1<=20);             //뒤에 조건식을 만드는것이 특징
+        
+        document.write('<hr>');
+
+        //3. for문
+        for(let n2=1;n2<=20;n2++){  //한번에 선언,조건식 작성
+            document.write(n2);     
+        }
+    </script>
+
+    <h3>실습 - 반복문으로 구구단만들기 예) 2*1=2 , 2*2=4</h3>
+    <script>
+        for(let a=2;a<=9;a++){                            //2에서 9를 출력
+            document.write('<p>************'+a+'단*************</p>');
+            for(let b=1;b<=9;b++){                        //1에서 9를 출력
+                //2*1=1 수식작성하여 출력하기
+                document.write(a+'X'+b+'='+a*b+'<br>');   //연산적용
+            }
+        }
+    </script>
+
+    <h3>실습 - 반복문으로 테이블태그 만들기 ( 달력 )</h3>
+    <script>
+        document.write('<table>');
+        document.write('<caption>테이블제목,설명문구</caption>');
+        document.write('<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>');
+
+        //조건문 활용하여 1 ~ 31초과 35까지 공백으로 표시하기
+        for(let day=1;day<=35;day++){                //1에서 35까지 만들기
+            if(day%7==1){
+                document.write('<tr>');
+                document.write('<td>'+day+'</td>');  // 홀수번째(가 나오면 7번째까지만 숫자출력하고 다음줄 넘어감
+                continue;
+            }
+            if(31<day&&day<=35){
+                document.write('<td>&nbsp;</td>');   // 공백으로 만들기
+                continue;
+            }
+            if(day%7==0){
+                document.write('<td>'+day+'</td>');  // 짝수번째출력(7로떨어질때 <tr>태그 들어감)
+                document.write('</tr>');
+                continue;
+            }
+            document.write('<td>'+day+'</td>');      //출력
+        }
+        document.write('</table>');
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장객체_배열(array)객체</title>
+    <style>
+        #food{
+            width: 300px;
+            height: 230px;
+            border: 3px solid #000;
+            margin: 0px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>내장객체_배열(array)객체</h2>
+    <dl>
+        <dt>배열(array)객체 : </dt>
+        <dd>연관된 데이터를 하나처럼 관리하고 싶을 때 사용</dd>
+        <dd>복수의 데이터를 제어할 수 있는 다양한 함수를 제공</dd>
+        <dd>배열함수를 이용한 데이터의 편리한 조작</dd>
+    </dl>
+
+    <h3>1. 배열객체 선언하기</h3>
+    <p>방법1) let array = new Array(data1, data2, data3, data4 ... dataN);</p>
+    <p>방법2) let array = [data1, data2, data3, data4 ... dataN];</p>
+    
+    <p>예 1) let fruits = new Array('수박', '참외', '귤' ...)</p>
+    <p>예 2) let fruits = ['수박', '참외', '귤' ....]</p>
+
+    <h3>2. 배열객체 호출하기</h3>
+    <p>인덱스 번호를 사용함. 번호는 0부터 시작한다</p>
+
+    <script>
+        //배열객체 선언하기 방법1)
+        let fruits = new Array('수박', '참외', '귤', '감', '사과', '포도', '복숭아');
+
+        //출력하기
+        document.write(fruits+'<br>');
+        document.write(fruits[0]+'<br>');
+        document.write(fruits[1]+'<br>');
+        document.write(fruits[2]+'<hr>');
+
+        //배열객체 선언하기 방법2)
+        let food = ['짜장면','짬뽕','햄버거','돈까스','김밥','샐러드','비빔밥'];
+
+        //출력하기
+        document.write(food+'<br>');
+        document.write(`내가 선택한 오늘의 점심메뉴는 ${food[0]} 입니다<br>`);
+        document.write(`js가 추천한 오늘의 점심메뉴는 ${food[Math.floor(Math.random()*7)]} 입니다`);
+    </script>
+
+    <hr>
+    <h3>실습예제 ) 중화요리 이미지를 사용하여 요일별 음식 추천하기</h3>
+    <p>날짜객체를 사용하여 현재 요일 번호를 구해서 배열번호에 맞는 이미지 파일 대입</p>
+
+    <div id="food">
+    </div>
+    
+    <script>
+        let c_food = ['food1', 'food2', 'food3', 'food4', 'food5', 'food6', 'food7'];
+        let yoil = ['(일)','(월)','(화)','(수)','(목)','(금)','(토)'];
+
+        let today = new Date();  //날짜객체
+
+        document.write(`<p>${today}</p>`);
+        document.write(`<p>${today.getDay()}</p>`);   //5 = (금)
+        document.write(yoil[today.getDay()]);         //(금) 출력
+
+
+        let y = yoil[today.getDay()];
+        let n = today.getDay();
+
+        //#food 박스에 내용 출력하기
+
+        document.getElementById('food').innerHTML='<h3>오늘 '+y+'의 추천요리는</h3><img src="./images/'+c_food[n]+'.jpg" alt="">';
+    </script>
+
+
+</body>
+</html>

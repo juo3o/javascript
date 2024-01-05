@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수복습_원하는숫자까지의 합계 구하기</title>
+    <style>
+        label{
+            display: inline-block;
+            width: 180px;
+            font-weight: bold;
+        }
+        input{
+            height: 30px; 
+            border: none; 
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h2>함수복습_원하는 숫자까지의 합계 출력</h2>
+    <p>사용자가 명령프롬프트를 이용하여 숫자를 입력하면 1부터 해당하는 숫자까지 합계를 출력해주는 함수를 작성한다.</p>
+
+    <p>
+        <label for="number">합계를 구할 숫자 입력 : </label><input type="text" id="number">
+    </p>
+    <p>
+        <label for="result">합계 결과 : </label><input type="text" id="result">
+    </p>
+    <p>
+        <input type="button" id="res_btn" value="합계보기">
+    </p>
+
+    <script>
+        //1. 변수선언
+        let n;
+        let res_b = document.getElementById('res_btn');
+
+        //2. 함수 클릭 시(n) 해당 함수 실행
+        res_b.addEventListener('click',sum);
+        
+        //3. 합계를 구해주는 함수
+        function sum(){
+            s = 0;
+            n = document.getElementById('number').value;
+            console.log(n);
+
+            // 반복문으로 1부터 n값 까지 구함
+            for(let i=1; i<=n; i++){
+                //**** 누적(1+1=2 2+1=3 3+3=6 6+4=10 10+5=15) 합계 구하기
+                s = s + i;
+            }
+            //연산결과 출력
+            document.getElementById('result').value = s;
+        }
+    </script>
+</body>
+</html>

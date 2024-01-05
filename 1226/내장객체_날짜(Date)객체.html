@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장객체_날짜(date)객체</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
+    <style>
+        #clock{font-size: 50px; font-weight: 900;}
+
+
+        #today_item{
+            text-align: center;
+            font-weight: 600;
+        }
+        #today_item > h3{
+            font-size: 30px;
+        }
+        small{color: rgb(195, 13, 13);}
+        .d_box{
+            background: rgb(195, 13, 13);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .d_box > p:first-child{font-size: 18px;}
+        .d_box > p:last-child{font-size: 46px;}
+    </style>
+</head>
+<body>
+    <h2>내장객체_날짜(Date)객체</h2>
+    <p>Date 객체는 현재 또는 특정 날짜와 시간에 대한 정보를 제공.</p>
+    <p>웹페이지의 증권, 은행, 뉴스 페이지 등에 오늘의 날짜와 시간을 표시하거나 게시판의 글목록 날짜 등 (공지사항,예약,상품구매,sns,로그인,로그아웃,댓글,메세지,이메일,게시글)</p>
+    <p>작성법 ) let 변수명 = new Date();</p>
+
+    <h3>날짜와 시간정보를 제공하는 속성</h3>
+    <ul>
+        <li>getFullYear(); - 년도 표시</li>
+        <li>getMonth(); - 월 표시(0-11로 표시되기 때문에 +1 해줘야함)</li>
+        <li>getDate(); - 일 표시</li>
+        <li>getDay(); - 요일 숫자로 표시(0 일, 1 월, 2 화, 3 수, 4 목, 5 금, 6 토)</li>
+        <li>getHours(); - 시간 표시(0 - 23시)</li>
+        <li>getMinute(); - 분 표시</li>
+        <li>getSecond(); - 초(0-59) 표시</li>
+        <li>getMilliseconds(); - 밀리초(1/1000) 표시</li>
+    </ul>
+
+    <h3>실습1. 뉴스사이트에서 보는 오늘 날짜  - 12. 26(화) 표시하기</h3>
+    <script>
+        let today = new Date();  //날짜객체생성
+        document.write(today);
+        document.write(`<p>${today.getMonth()+1}</p>`); //월
+        document.write(`<p>${today.getDate()}</p>`);    //일
+        document.write(`<p>${today.getDay()}</p>`);     //요일번호
+
+        //변수담기
+        let m = today.getMonth()+1; 
+        let d = today.getDate();
+        let yo = today.getDay();
+
+        let yoil = ['일','월','화','수','목','금','토'];
+        document.write(`오늘은 ${m}. ${d}. (${yoil[yo]}) 입니다.`);
+    </script>
+
+    <h3>실습2. 실시간 디지털 시계</h3>
+    <div id="clock"></div>
+    <script>
+        //출력을 위한 함수
+        function startTime(){
+            //시,분,초 선언
+            let today1 = new Date();
+            let h = today1.getHours();
+            let mi = today1.getMinutes();
+            let s = today1.getSeconds();
+
+            h = checkNum(h);
+            mi = checkNum(mi);
+            s = checkNum(s);
+
+            document.getElementById('clock').innerHTML=`${h}:${mi}:${s}`;
+
+            //시간객체로 0.5초마다 stratTime 함수 호출
+            let t = setTimeout(startTime, 500);
+        };
+
+
+        //시,분,초 1-9사이일때 숫자앞에 0 붙이기
+        function checkNum(i){
+            if(i<10){                         // i가 10보다 작다면
+                i = '0' + 1;                  // i 앞에 0 문자를 붙인다
+            }
+            return i;                         // 다시 i값을 startTime 함수로 넘김
+        }
+        startTime();                          // 시간함수 실행 -> 실시간 시간 출력
+
+    </script>
+
+    <h3>실습3. D-day날짜와 시간 표시하기 (타임어택)</h3>
+    <p>사용자가 지정한 날짜까지 계산하여 시:분:초 표시하기</p>
+
+    <article id="today_item">
+        <h3><small>ONLY 24시간 환상의 할인템</small><br>오늘의 특가</h3>
+        <div class="d_box">
+            <p><i class="fas fa-clock"></i> 오늘 쇼핑을 미루지 말자</p>
+            <p id="d_day">
+                <span>D-Day</span><br>
+                <span id="clock2"></span>
+            </p>
+        </div>
+    </article>
+
+    <script>
+        //d-day구하는 함수
+        function getdDay(){
+            
+            //d-day날짜설정하기
+            const setDate = new Date('2023-12-31');  //마지막날짜 :end
+            const today2 = new Date();               //오늘날짜(=시작날짜) : start
+
+
+            //end날짜 - start날짜 = 남은 날짜
+            const distance = setDate - today2;
+
+            //distance변수값을 날짜,시간,분,초에 맞게 나누어서 올림함
+            let disDay = Math.floor(distance/(1000*60*60*24));
+            let disHour = Math.floor((distance/(1000*60*60))%24-9);
+            let disMin = Math.floor((distance/(1000*60))%60);
+            let disSec = Math.floor(distance/1000%60);      
+
+
+            //수식결과가 밀리세컨드(1/1000)단위로 출력됨
+            console.log(distance);
+            console.log(disDay);
+            console.log(disHour);
+            console.log(disMin);
+            console.log(disSec);
+
+
+            //checkNum2 적용
+            disDay = checkNum2(disDay);
+            disHour = checkNum2(disHour);
+            disMin = checkNum2(disMin);
+            disSec = checkNum2(disSec);
+
+
+            document.getElementById('clock2').innerHTML = `${disDay}일 ${disHour}시간 ${disMin}분 ${disSec}초 남았습니다`;
+
+            //매 1초마다 함수를 반복호출하여 실시간
+            let t = setTimeout(getdDay, 1000);
+        };
+
+        //시,분,초 2자리 수 만들기
+        function checkNum2(i){
+            if(i<10){
+                i = '0' + i;
+            }
+            return i;
+        }
+
+        //함수 호출하여 내용출력
+        getdDay();
+    </script>
+</body>
+</html>

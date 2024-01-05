@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제2_스타벅스모바일 2단내비, 질문과답변</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
+    <link rel="stylesheet" href="./css/reset.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <style>
+        h2, p{padding: 10px;}
+        a{color: #fff; text-decoration: none;}
+        .gnb{
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,.7);
+        }
+        .gnb > ul{
+            width: 400px;
+            margin: 0px auto;
+        }
+        .gnb > ul > li{
+            text-indent: 10px;
+            /*float속성해제 */
+            clear: right;
+            border-bottom: 1px solid #fff;
+        }
+        .gnb > ul > li a:hover{text-decoration: underline; color: #fff;}
+        .gnb > ul > li > a{
+            display: block;
+            width: 100%;
+            line-height: 40px;
+            font-size: 1rem;
+            background: #3a8d4e;
+        }
+        i.fa-angle-down{
+            float: right; 
+            font-size: 1.3rem;
+            padding: 10px;
+        }
+        .act{
+            transform: rotate(180deg) translateX(-10px) !important ;
+            /* 메뉴클릭하면 화살표 돌아감 */
+        }
+
+
+        /* 서브메뉴서식 */
+        .sub{
+            width: 100%;
+            background: #222222;
+            display: none;
+        }
+        .sub > li > a{
+            font-size: 0.95rem;
+            line-height: 36px;
+            display: block;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+
+            //메인메뉴 변수선언
+            const mnu = $('.gnb > ul > li > a');
+
+            //메뉴클릭시 해당서브나오게하기
+            mnu.click(function(){
+                // alert('클릭');  
+
+                //1. 서브메뉴
+                //형a을 클릭하면 동생ul이 나옴/들어감
+                // $(this).next().slideToggle();
+                //i를 찾아서 act실행
+                // $(this).find('i').toggleClass('act');
+                //----------------------------------------------
+
+
+                //2. 아코디언메뉴 : 하나는 무조건 펼쳐져있음
+                
+                $('.sub').slideUp();  //모든서브메뉴 위로접고
+                $(this).next().slideDown();
+
+                $('i').removeClass('act');  //모든 ix태그서식 제거하고
+                $(this).find('i').addClass('act'); //선택한메뉴의 자손i를 찾아서 act서식 적용
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>실습예제2_스타벅스모바일 2단내비, 질문과답변</h2>
+    <p>2단목록 작성하여 메뉴 클릭시 서브메뉴 펼치기/접기</p>
+
+    <nav class="gnb">
+        <ul>
+            <li><a href="#" title="">메인메뉴 1 <i class="fas fa-angle-down"></i></a>
+                <ul class="sub">
+                    <li><a href="#" title="">서브메뉴1</a></li>
+                    <li><a href="#" title="">서브메뉴2</a></li>
+                    <li><a href="#" title="">서브메뉴3</a></li>
+                </ul>
+            </li>
+            <li><a href="#" title="">메인메뉴 2 <i class="fas fa-angle-down"></i></a>
+                <ul class="sub">
+                    <li><a href="#" title="">서브메뉴1</a></li>
+                    <li><a href="#" title="">서브메뉴2</a></li>
+                    <li><a href="#" title="">서브메뉴3</a></li>
+                </ul>
+            </li>
+            <li><a href="#" title="">메인메뉴 3 <i class="fas fa-angle-down"></i></a>
+                <ul class="sub">
+                    <li><a href="#" title="">서브메뉴1</a></li>
+                    <li><a href="#" title="">서브메뉴2</a></li>
+                    <li><a href="#" title="">서브메뉴3</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <h3>아코디언 (ex. 질문과답변, 모바일 내비게이션)</h3>
+    
+</body>
+</html>

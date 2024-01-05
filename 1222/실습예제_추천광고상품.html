@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제_추천광고상품</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
+    <style>
+        h2{text-align: center;}
+        h2:first-child{color: #ec5ac3;  padding-top: 50px;}
+        div{
+            width: 325px;
+            position: relative;
+            margin: 0px auto;
+        }
+        .fas{
+            font-size: 30px;
+            background: rgba(0,0,0,.5);
+            color: #fff;
+            padding: 10px 15px;
+            position: absolute;
+            top: 280px;
+        }
+        #right{right: 0px;}
+    </style>
+</head>
+<body>
+    <h2>HOT! TREND</h2>
+    <h2>추천광고상품</h2>
+    <div>
+        <i class="fas fa-angle-left" id="left"></i>
+        <i class="fas fa-angle-right" id="right"></i>
+        <img src="./images/img1.jpg" alt="" id="banner">
+    </div>
+
+    <script>
+
+        //새로고침 랜덤 이미지
+        let ran = Math.ceil(Math.random()*18);
+        document.write(ran);
+
+        let ar = ['img1','img2','img3','img4','img5','img6','img7','img8','img9','img10','img11','img12','img13','img14','img15','img16','img17','img18'];
+        
+        const left = document.getElementById('left');
+        const right = document.getElementById('right');
+
+        document.getElementById('banner').src='./images/'+ar[ran]+'.jpg';
+
+        //좌우버튼클릭 시 순서대로 이미지변경
+
+        left.addEventListener('click', function(){
+            // ar.reduce(function (acc, cur, idx) {
+            //     console.log(acc, cur, idx);
+            //     return acc + cur;
+            // }, 0);
+            if(ran==0){
+                ran = 17;
+            }else{
+                ran --;
+            }
+
+            document.getElementById('banner').src='./images/'+ar[ran]+'.jpg';
+        });
+
+        right.addEventListener('click', function(){
+            if(ran==17){
+                ran = 0;
+            }else{
+                ran ++;
+            }
+            document.getElementById('banner').src='./images/'+ar[ran]+'.jpg';
+        })
+        
+    </script>
+</body>
+</html>

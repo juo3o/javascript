@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이트메서드 사용법과 응용</title>
+    <style>
+        #box01{
+            width: 100px; height: 100px;
+            background: #e39494;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 100px;
+            position: relative; left: 0px; /*왼쪽기준*/
+        }
+
+        #kakao{
+            position: relative;
+            left: 0px;
+        }
+        .list01{padding: 0px; margin: 0px;}
+        .list01 > li{
+            background: rgb(118, 170, 238);
+            position: relative;
+            left: 0px;
+            margin-bottom: 20px;
+            width: 50px; height: 50px;
+            list-style: none;
+            line-height: 50px; text-align: center;
+        }
+        .bemin{position: relative; left: 0px;}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- 제이쿼리ui easing값 사용할때 -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            //1. 시작버튼누르면 애니메이션적용
+            $('#btn01').click(function(){
+
+                $('#box01').animate({'left':'500px'}, 1000, function(){ //1초동안 왼쪽에서 오른쪽으로 500px만큼 움직임
+                    $('#box01').animate({'left':'0'}, 2000);           //콜백함수로 위치 0으로 되돌아옴   
+                }); 
+
+            });
+
+            //2. 종료버튼누르면 애니메이션멈춤
+            $('#btn02').click(function(){
+                $('#box01').stop();   //함수 제거
+            });
+
+
+
+
+            //3. 자바스크립트 절대값을 활용하여 캐릭터 상,하,좌,우 움직이기
+            //50px씩 이동하기
+            let n = 50;
+
+            $('#btn03').click(function(){//위로이동
+                $('#kakao').animate({'top':'-='+n},500);//n값에 연산자  -=, +=  : 50+50+50...
+            });
+            $('#btn04').click(function(){//아래로이동
+                $('#kakao').animate({'top':'+='+n},500);
+            });
+            $('#btn05').click(function(){//좌로이동
+                $('#kakao').animate({'left':'-='+n},500);
+            });
+            $('#btn06').click(function(){//우로이동
+                $('#kakao').animate({'left':'+='+n},500);
+            });
+
+
+
+            //4.box에 hover시 순차적으로 애니메이션 적용하기
+
+            let list = $('.list01 > li');
+            list.hover(function(){ //목록에 마우스 엔터시
+                $(this).animate({'left':'500px'},500); //this : 내가선택한대상
+            },function(){ //마우스 아웃시
+                $(this).animate({'left':'0px'},500);
+            });
+
+            
+
+            
+            //5. easing값을 사용하여 속도감있는 애니메이션 적용하기
+
+            $('#order').click(function(){
+
+                $('#baemin1').animate({'left':'1000px'}, 1500, 'linear'); //기본속도(일정하게)
+                $('#baemin2').animate({'left':'1000px'}, 1500, 'easeOutQuint'); //기본속도(일정하게)
+                $('#baemin3').animate({'left':'1000px'}, 1500, 'easeOutBounce'); //기본속도(일정하게)
+                $('#baemin4').animate({'left':'1000px'}, 1500, 'easeOutElastic'); //기본속도(일정하게)
+                $('#baemin5').animate({'left':'1000px'}, 1500, 'easeOutExpo'); //기본속도(일정하게)
+
+            });
+
+
+        });
+    </script>
+
+</head>
+<body>
+    <h2>애니메이트메서드 사용법과 응용</h2>
+    <p>제이쿼리에서 효과와 애니메이트 메소드를 사용하여 사용자가 선택한 요소를 다양하게 움직이게 만들 수 있다.</p>
+
+    <h3>1. animate문법</h3>
+    <p>$('사용자가선택한대상').animate({'속성':'값'}, 시간, 가속도, 콜백함수);</p>
+    <ul>
+        <li>속성:값 - css  / 값 - 자바스크립트 변수나 연산자를 활용할 수 있다</li>
+        <li>시간 - 1/1000초값 사용 = 1초</li>
+        <li>콜백함수 - callback function으로서  애니메이션 동작이 끝난뒤에 다음동작 이어서 실행함</li>
+    </ul>
+
+
+    <h3>2. animate메소드를 사용하여 박스 움직이게 하기</h3>
+    <div id="box01">원</div>
+    <input type="button" value="애니메이션 시작" id="btn01">
+    <input type="button" value="애니메이션 종료" id="btn02">
+
+
+    <h3>3. 자바스크립트 절대값을 활용하여 캐릭터 상,하,좌,우 움직이기</h3>
+    <img src="./images/KakaoTalk.gif" alt="튜브" id="kakao">
+    <input type="button" value="위로 이동" id="btn03">
+    <input type="button" value="아래로 이동" id="btn04">
+    <input type="button" value="좌로 이동" id="btn05">
+    <input type="button" value="우로 이동" id="btn06">
+
+
+    <h3>4. box에 hover시 순차적으로 애니메이션 적용하기</h3>
+    <ul class="list01"> 
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <h3>5. easing값을 사용하여 속도감있는 애니메이션 적용하기</h3>
+    <img src="./images/easing.png" alt="속도값주기"><br>
+
+    <img src="./images/baemin.png" alt="배달하기" id="baemin1" class="bemin"><br>
+    <img src="./images/baemin.png" alt="배달하기" id="baemin2" class="bemin"><br>
+    <img src="./images/baemin.png" alt="배달하기" id="baemin3" class="bemin"><br>
+    <img src="./images/baemin.png" alt="배달하기" id="baemin4" class="bemin"><br>
+    <img src="./images/baemin.png" alt="배달하기" id="baemin5" class="bemin"><br>
+
+    <input type="button" value="배달주문~~" id="order">
+
+</body>
+</html>

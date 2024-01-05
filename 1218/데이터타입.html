@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터타입</title>
+    <script>
+        //1. 원시형(기본형) 데이터
+        let a = 10;     //숫자데이터
+        let b = '10';   //문자데이터
+        let c = true;   //부을형데이터
+        let n1;         //값이 정의되지 않음(=undifined)
+        let n2 = null;  //값이 없다(변수는 필요한데, 값이 아직 결정된게 없다..)
+
+
+        document.write(a+'<br>');
+        document.write(b+'<br>');
+        document.write('변수 a의 데이터 형식은'+ typeof(a)+'입니다<br>');
+        document.write('변수 b의 데이터 형식은'+ typeof b+'입니다<br>');
+        document.write(c+'<br>');
+        document.write(n1+'<br>');
+        document.write(n2+'<hr>');
+
+
+
+
+        //2. 참조형 데이터 - 여러개의 데이터를 한꺼번에 담음 (배열,array)
+        let array1 = ['일','월','화','수','목','금','토'];
+        let fruits = ['사과','배','감','귤','포도','오렌지','수박'];
+        let info = ['jeon','홍길동','서울시 종로구 구기동','전화번호','30','성별'];
+
+        
+        document.write(array1+'<br>');             //배열데이터 전부 출력
+        document.write(array1[2]+'<br>');          //원하는 인덱스 번호 입력  0,1,2,3,4.. 순
+
+
+        document.write('제가좋아하는과일은'+fruits[0]+'입니다'+'<br>');           
+        document.write('나의 아이디는 '+info[0]+'이고, 이름은 '+info[1]+'이며, 나이는 '+info[4]+', 사는곳은 '+info[2]+'입니다.<hr>'); 
+        
+
+
+
+        //3. 함수형 데이터 - function
+        function name(){
+            document.write('<p>함수형데이터입니다. 호출전까지 출력안됨</p><hr>')
+        }
+        //함수명으로 호출해야함
+        name();
+
+
+
+        //4. 객체
+
+        //1)사용자정의 객체 - 사용자가 만들 수 있다       ex. 로그인 후 마이페이지. 주문결제내역. 
+        let person = {
+            'age':'21',
+            'name':'강감찬',
+            'job':'웹퍼블리셔',
+            'height':'175'
+        };
+        
+        document.write(person.age);     //나이출력
+        document.write(person.name);    //이름출력
+        document.write(person.job);     //직업출력
+        document.write(person.height);  //키 출력
+        
+        //  `(백틱문자) - es6문법에서 새로 추가된 기호. 탬플릿리터럴(`)이라고함. + 대신 사용 가능. ${변수값} 필수 !! enter도 상관없음.
+        document.write(`
+                <br>나의 이름은 ${person.name}이고,
+                나이는 ${person.age}이며, 
+                키는 ${person.height}, 
+                직업은 ${person.job}입니다<hr>`
+        );
+
+        //2)내장객체 - document, window
+        document.write('document 내장객체<br');
+        window.alert('window 내장객체');
+
+        
+        
+
+
+
+
+    </script>
+</head>
+<body>
+    <h2>데이터타입 유형(data type)</h2>
+    <p>자바스크립트에서 사용하는 데이터의 유형에 대해 알아본다.</p>
+    <ul>
+        <li>문자데이터형(string)</li>
+        <li>숫자데이터형(number)</li>
+        <li>부울형(boolean) - true(확인) / false(취소)</li>
+        <li>찾을수 없는 데이터형(underfined)</li>
+        <li>값이 없는 데이터형(null)</li>
+        <li>배열형 데이터(array) - 한번에여러개의데이터를 담음</li>
+        <li>함수형 데이터(function)</li>
+        <li>객체(object) - document, window, alert, confirm, prompt ......</li>
+    </ul>
+    <p>typeof 연산자 -  데이터형식을 체크함 <br> 변수 앞에 Number, String 등을 작성하면 실제 데이터 형식을 알 수 있다.</p>
+    
+    <p>es6문법에서 새롭게 추가된 기호  >  템플릿리터럴(`txtxtxt ${변수값} txtxtxt`)  = (+) 없이 문자열 삽입가능. <br>
+        이를 문자열인터플레이션(String Interpolation) 이라함</p>
+
+
+</body>
+</html>

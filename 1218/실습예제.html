@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 - if문을 활용한 교보문고 책 소개</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">    
+    <style>
+        .b_box *{margin: 0px; padding: 0px;}
+        .b_box{width: 458px; border: 3px solid #000;}
+        .b_box > h3{
+            text-align: center;
+            line-height: 50px;
+        }
+        .b_box > img{width: 100%;}
+        .b_box > p{text-align: right;}
+        span.fas{
+            font-size: 30px;
+            padding: 7px 10px;
+            border: 1px solid#333;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>실습예제 - if문을 활용한 교보문고 책 소개</h2>
+    <p>이미지 5장을 사용하여 '좌,우'버튼을 클릭하면 이미지와 페이지 번호가 변경되도록 설정</p>
+    <ul>
+        <li>article박스안에 이미지태그, 아이콘폰트, 페이지번호 표시</li>
+        <li>좌우 버튼 클릭 시 각각 해당하는 함수 작성하여 페이지번호가 증가, 감소하도록 표시</li>
+        <li>버튼 클릭 시 이미지의 src 속성값에 이미지 번호 변경되도록 표시</li>
+    </ul>
+    <article class="b_box">
+        <h3>인문/교양/소설</h3>
+        <p>
+            <span id="page"></span>
+            <span class="fas fa-angle-left" id="left_btn"></span>
+            <span class="fas fa-angle-right" id="right_btn"></span>
+        </p>
+        <img src="./images/book_01.jpg" alt="책사진" id="books">
+    </article>
+
+
+    <script>
+        //1. 변수값
+        let n = 1;
+        const l_btn = document.getElementById('left_btn');
+        const r_btn = document.getElementById('right_btn');
+
+        //2. 페이지번호 변수선언
+        let page_n = document.getElementById('page');
+
+        //3. 페이지번호 출력
+        page_n.innerHTML = n + '/5';
+
+        //4. 좌우버튼클릭시 해당하는 함수 호출하여 이미지 변경
+        l_btn.addEventListener('click', function(){
+            // window.alert('왼쪽버튼클릭');
+            //1, 5, 4, 3, 2, 1 ...
+            if(n==1){
+                n = 5;
+            }else{
+                n --;
+            }
+            page_n.innerHTML = n + '/5';
+            document.getElementById('books').src='./images/book_0'+n+'.jpg';
+        });
+        r_btn.addEventListener('click', function(){
+            // window.alert('오른쪽버튼클릭');
+            // 1, 2, 3, 4, 5, 1, 2.....
+            if(n==5){
+                n = 1;
+            }else{
+                n ++;
+            }
+            page_n.innerHTML = n + '/5';
+            document.getElementById('books').src='./images/book_0'+n+'.jpg';
+
+        });
+
+    </script>
+
+</body>
+</html>

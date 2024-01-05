@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장객체_문자열(string)객체</title>
+</head>
+<body>
+    <h2>내장객체_문자열(string)객체</h2>
+    <p>js에서 가장 활용도가 높은 객체. 문자열값을 인덱스번호를 통해 값 찾기나 다른 문자로 변경 가능하다</p>
+    <p>ex ) 아이디패스워드 입력창 문자열개수 체크, 단문메세지 문자열개수 체크, 패스워드 찾아서 다른 문자열로 변경, 이미지 갤러리 등..</p>
+    <p>문자열 객체는 다른 내장객체와는 다르게 new 키워드를 생략해도 된다.</p>
+
+    <h3>문자열 객체의 메서드와 속성들</h3>
+    <ul>
+        <li>replace  - 문자 치환하기</li>
+        <li>split - 문자열 분리하기</li>
+        <li>substring - 인덱스번호(0부터시작)부터 문자열 표시</li>
+        <li>length - 문자열 개수를 체크</li>
+        <li>indexof - 문자열과 일치하는 인데스번호를 반환</li>
+    </ul>
+
+    <script>
+        //1. 변수선언
+        let url;
+        let jumin;
+
+
+        //2. 데이터입력하기
+        url = 'http://www.naver.com';
+        jumin = '991226-1007564';
+
+        //3. 출력하기
+        document.write(url);
+
+
+        // 1) replace - 문자치환
+        url = url.replace('naver.com','daum.net');
+        document.write('<br>'+url);
+
+        // 2) split - 문자열분리
+        url = url.split('.');
+        document.write('<br>'+url);
+
+        jumin = jumin.split('-');
+        document.write('<br>'+jumin);
+        document.write('<br>생년월일 : '+jumin[0]);
+        document.write('<br>주민번호 : '+jumin[1]);
+
+        // 3) substring - 인덱스번호(0부터시작)부터 문자열 표시
+        url = 'http://www.google.co.kr';
+        url = url.substring(7);
+        document.write('<br>'+url);
+
+        // 4) length - 문자열 개수 체크
+        url = url.length;
+        document.write('<br> url 문자열 개수는 : '+url+'<br>');
+
+        // 5) indexof - 배열에서 해당하는 문자열이 일치하는 인덱스 번호를 찾아줌
+        let fruit = ['사과','배','딸기','수박','바나나','귤'];
+        let n = fruit.indexOf('수박');
+        document.write('당신이 좋아하는 과일('+fruit[n]+')은 '+n+'번째 데이터입니다');
+
+
+
+    </script>
+</body>
+</html>

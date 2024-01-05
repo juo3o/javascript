@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="uft-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 연산자</title>
+    <script>
+        //1. 산술연산자                                                   //팝업창
+        let a = 10;
+        let b = 5;
+
+        let c = prompt('숫자를 입력하세요')
+
+        document.write(a+b+'<br>');
+        document.write(a*b+'<br>');
+        document.write(a%b+'<br>'); // 나머지값구하기
+
+
+        if(c%2==0){  //짝수홀수구할때  (ex. 주민번호 남여 구분.)
+            document.write('<p>입력하신 숫자는 짝수입니다</p>');
+        }
+        else{
+            document.write('<p>입력하신 숫자는 홀수입니다</p>');
+        }
+
+        //2. 비교연산자
+        let res = a > b;
+        document.write(res);
+
+        res = a < b;    //let 안붙이기
+        document.write('<br>'+res);   //10<5 = false
+
+        res = a == b;  
+        document.write('<br>'+res);   //10=5  =false
+
+        //3. 대입연산자
+        res = a = b;    // a에 5를 저장,  res에 a를저장
+        document.write('<br>'+res);   // 5
+
+        //4. 증감연산자
+        res = a++;     //변수명 a 출력 후 뒤에 1을 증가(화면에안보임).
+        document.write('<br>'+res);  //5    (+1)
+        res = ++a;                   
+        document.write('<br>'+res);  //5    + 1(뒤에증가) + 1  =  7
+
+        //5. 논리연산자 : &&(and)  ||(or)  !(not)                           //팝업창
+        alert((1>2)&&(1<2));  // 1조건과 2조건 모두 만족하지 않음 = false
+        alert((1>2)||(1<2));  // 1조건과 2조건 둘중에 하나만 만족  = ture
+
+        //6. 문자열결합연산자 : 문자+숫자, 문자+문자                         //팝업창
+        let name, region;
+        name = '홍길동';
+        region = '서울';
+        
+        document.write(name+'이(가) 사는 지역은'+ region +'입니다'+"<br>")
+
+        //7. 삼항조건연산자 : 조건식?실행문1:실행문2;                        //팝업창
+        let jumsu = prompt('점수를 입력하세요');
+        jumsu > 60?alert('합격'):alert('불합격');
+
+        //8. 타입연산자 - 변수가 숫자인지 문자인지   typeof(데이터 성향 구분해줌)
+        document.write('변수 jumsu의 타입은'+typeof(jumsu)+'입니다');
+
+
+
+
+
+        //실습예제. 사용자가입력한 아이디가 'master','abcd', 'naver' 중 하나만 입력해도 인증되며, 패스워드는 '1234'일때 인증되도록
+        //결과 : '인증완료', '인증실패 다시 시도하세요'
+
+
+
+
+        let id = prompt('아이디를 입력하세요');
+        let pw = prompt('패스워드를 입력하세요');
+
+
+        // ((id == 'master')||(id == 'abcd')||(id == 'naver'))&&(pw == '1234')?alert('인증완료'):alert('인증실패 다시시도하세요');     또는
+        let join = ((id=='master')||(id == 'abcd')||(id == 'naver'))&&(pw == '1234');
+        let result = join?alert('인증완료'):alert('다시시도하세요');
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <h2>자바스크립트 연산자</h2>
+    <p>: 사용자가 조건식을 만들어서 원하는 결과를 출력하고자 할때 사용하는 기호</p>
+    <ul>
+        <li>산술연산자 : +, -, *, /, %(나머지)</li>
+        <li>문자열 결합 연산자 : +(문자+문자, 문자+숫자)</li>
+        <li>비교연산자 : >, <, >=, <=, ==, ===</li>
+        <li>대입연산자 : =, +=, -=</li>
+        <li>증감연산자 : ++(1씩증가), --(1씩감소)</li>
+        <li>논리연산자 : and(&&), or(||), not(!)</li>
+        <li>삼항조건연산자 : 조건식?조건이맞을때 출력값1: 조건이맞지않을때 출력값2;</li>
+        <li>타입연산자 - typeof(데이터타입을 구분하고 형식을 알려줌)</li>
+    </ul>
+</body>
+</html>

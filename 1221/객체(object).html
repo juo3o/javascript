@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체(object)</title>
+    <style>
+        span{
+            font-weight: bold;
+            font-size: 18px;
+            color: rgb(42, 112, 156);
+        }
+        fieldset{
+            background: #ddd;
+        }
+        label{
+            display: inline-block;
+            width: 80px;
+        }
+        input{
+            height: 25px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h2>객체(object)</h2>
+    <dl>
+        <dt>객체(object) :</dt>
+        <dd>1. 이름(key)과 값(value)으로 구성된 속성을 담아놓은 컨테이너</dd>
+        <dd>2. 객체에 변수를 선언하면 속성(property)을 사용할 수 있다. 예) document.getElementById('아이디명');</dd>
+        <dd>3. 객체에 함수를 선언하면 메서드(method)를 사용할 수 있다. 예) document.write('내용');</dd>
+    </dl>
+
+    <h3>1. 객체의 종류</h3>
+    <p>내장객체 - 자바스크립트에서 미리 정해놓은 객체. 다양한 종류가 있다 </p>
+    <ul>
+        <li>수학객체(Math)</li>
+        <li>날짜객체(date)</li>
+        <li>배열객체(array)</li>
+        <li>문자열객체(string)</li>
+        <li>문서객체(document)</li>
+        <li>윈도우객체(window)</li>
+    </ul>
+    <p>사용자정의 객체 - 내장객체를 제외한 . 사용자가 임의로 지정(원하는내용을 토대로 직접 개체 선언)해서 작성하는 방법.</p>
+
+    <div>
+        <fieldset>
+            <legend>휴대폰정보 입력하기</legend>
+            <p><label for="company">제조회사 : </label><input type="text" id="company"></p>
+            <p><label for="model">모델 : </label><input type="text" id="model"></p>
+            <p><label for="color">색상 : </label><input type="text" id="color"></p>
+            <input type="button" value="입력한 정보 출력하기 (신청하기 or 주문하기)" id="order_btn">
+        </fieldset>
+    </div>
+    <!-- 내용결과 출력하는 곳 -->
+    <p id="result">출력결과</p>
+
+
+
+
+    <script>
+        //1. 사용자정의객체
+        let phone = new Object();
+        const btn = document.getElementById('order_btn');
+
+        btn.addEventListener('click', function(){
+            const c = document.getElementById('company').value;
+            const m = document.getElementById('model').value;
+            const co = document.getElementById('color').value;
+
+
+            phone.company = c;
+            phone.model = m;
+            phone.color = co;
+
+            //2. 객체 호출하여 내용 출력
+            document.getElementById('result').innerHTML=`<p>나의 핸드폰 제조회사는 <span>${phone.company}</span>이고,
+            모델명은 <span>${phone.model}</span>이며, 색상은 <span>${phone.color}</span>입니다.</p>`;
+
+        });
+    </script>
+
+
+
+    <div>
+        <fieldset>
+            <legend>개인정보 입력양식</legend>
+            <p><label for="first">성 : </label><input type="text" id="first" placeholder="성을 입력하세요" maxlength="1"></p>
+            <p><label for="last">이름 : </label><input type="text" id="last" placeholder="이름을 입력하세요" maxlength="4"></p>
+            <p><label for="age">나이 : </label><input type="number" id="age"></p>
+            <p><label for="height">키 : </label><input type="number" id="height" maxlength="3"></p>
+            <p><label for="weight">몸무게 : </label><input type="number" id="weight" maxlength="3"></p>
+            <input type="button" value="정보입력완료" id="end_btn">
+            <input type="button" value="입력취소" id="c_btn">
+        </fieldset>
+    </div>
+    <p id="result2">출력결과</p>
+
+    <script>
+        // 사용자정의객체(2)
+        //Q. 위 두번째 객체생성방법을 통해 개인정보 입력양식을 만들어 사용자가 '성','이름','나이','키','몸무게'를 입력하고 '신청완료'누르면 출력하기
+
+        let f,l,a,h,w;
+        // let f = document.getElementById('first');
+        // let l = document.getElementById('last');
+        // let a = document.getElementById('age');
+        // let h = document.getElementById('height');
+        // let w = document.getElementById('weight');
+
+        
+        const e_btn = document.getElementById('end_btn');
+        const c_btn = document.getElementById('c_btn');
+
+
+
+        e_btn.addEventListener('click', function(){
+
+            //let a = new Object();
+            let person = {
+            firstName: f,
+            lastName: l,
+            age: a,
+            height: h,
+            weight: w
+            }
+
+            f = document.getElementById('first').value;
+            l = document.getElementById('last').value;
+            a = document.getElementById('age').value;
+            h = document.getElementById('height').value;
+            w = document.getElementById('weight').value;
+
+            //개인정보입력양식 안에서만 사용하기위한 객체
+            person.firstName = f;
+            person.lastName = l;
+            person.age = a;
+            person.height = h;
+            person.weight = w;
+
+            document.getElementById('result2').innerHTML=`<p>나의 이름은 ${person.firstName} ${person.lastName}이고,
+            나이는 ${person.age}이며, 키는 ${person.height}, 몸무게는 ${person.weight}이다.</p>`;
+        });
+
+        c_btn.addEventListener('click', function(){
+            //전역변수 사용하기
+            document.getElementById('first').value = "";
+            document.getElementById('last').value = "";
+            document.getElementById('age').value = "";
+            document.getElementById('height').value = "";
+            document.getElementById('weight').value = "";
+            //출력결과 초기화
+            document.getElementById('result2').innerText = "";
+        });
+
+
+    </script>
+
+
+
+</body>
+</html>

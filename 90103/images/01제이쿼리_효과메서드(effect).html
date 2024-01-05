@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01제이쿼리_효과메서드(effect)</title>
+  <style>
+    .banner{
+      width:360px;
+      height:468px;
+      border:3px solid #f00;
+      display:none;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){ //html문서가 로딩이 끝나면 제이쿼리를 시작한다.
+      //버튼 변수선언
+      let b1, b2, b3, b4, b5, b6, b7, b8, b9, b10;
+
+      b1 = $('#btn01');
+      b2 = $('#btn02');
+      b3 = $('#btn03');
+      b4 = $('#btn04');
+      b5 = $('#btn05');
+      b6 = $('#btn06');
+      b7 = $('#btn07');
+      b8 = $('#btn08');
+      b9 = $('#btn09');
+      b10 = $('#btn10');
+
+      b1.click(function(){
+        $('.banner').show();
+      });
+
+      b2.on('click dblclick',(function(){
+        $('.banner').hide();
+      }));
+
+      b3.click(function(){
+        $('.banner').toggle(); //show, hide 둘다 사용가능
+      });
+
+      b4.click(function(){
+        $('.banner').slideDown();
+      });
+      b5.click(function(){
+        $('.banner').slideUp();
+      });
+      b6.click(function(){
+        $('.banner').slideToggle();
+      });
+
+      b7.click(function(){
+        $('.banner').fadeIn(); //서서히 나타나기
+      });
+
+      b8.click(function(){
+        $('.banner').fadeOut(); //서서히 사라지기
+      });
+
+      b9.click(function(){
+        $('.banner').fadeToggle(); //서서히 나타나기/사라지기
+      });
+
+      b10.click(function(){
+        $('.banner').fadeTo(500, 0.3); //시간과 투명도조절하여 서서히 희미하기 설정
+      });
+
+    });
+  </script>
+</head>
+<body>
+  <h2>01제이쿼리_효과메서드(effect)</h2>
+  <p>효과(effect)란? 사용자가 지정한 html요소를 선택하여 숨기거나 나타내기, 페이드 효과, 슬라이드 다운, 업, 애니메이션 기능을 사용하기 위한 메소드들이 있다.</p>
+  <ul>
+    <li>show(); - 선택한 요소를 보이게 한다.</li>
+    <li>hide(); - 선택한 요소를 숨긴다.</li>
+    <li>toggle(); - 선택한 요소를 숨기거나/나타낸다.</li>
+    <li>slideDown(); - 선택한 요소를 아래로 펼친다.</li>
+    <li>slideUp(); - 선택한 요소를 위로 접는다.</li>
+    <li>slideToggle(); - 선택한 요소를 아래로 펼치거나/위로 접는다.</li>
+    <li>fadeIn(); - 선택한 요소를 서서히 나타낸다.</li>
+    <li>fadeOut(); - 선택한 요소를 서서히 사라지게한다.</li>
+    <li>fadeToggle(); - 선택한 요소를 서서히 나타내거나/사라지게한다.</li>
+    <li>fadeTo(); - 선택한 요소를 지정한 시간만큼 서서히 사라지게한다.</li>
+  </ul>
+  <!-- input[type=button value id=btn0$]*10 -->
+  <input type="button" value="show()" id="btn01">
+  <input type="button" value="hide()" id="btn02">
+  <input type="button" value="toggle()" id="btn03">
+  <input type="button" value="slideDown()" id="btn04">
+  <input type="button" value="slideUp()" id="btn05">
+  <input type="button" value="slideToggle()" id="btn06">
+  <input type="button" value="fadeIn()" id="btn07">
+  <input type="button" value="fadeOut()" id="btn08">
+  <input type="button" value="fadeToggle()" id="btn09">
+  <input type="button" value="fadeTo()" id="btn10">
+
+  <div class="banner">
+    <img src="./images/product.jpg" alt="배너">
+  </div>
+</body>
+</html>

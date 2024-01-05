@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 _ 여행</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
+    <style>
+        article{
+            width: 500px;
+            position: relative;
+        }
+        #page{
+            position: absolute;
+            bottom: 3px; right: 0px;
+            background: rgba(0,0,0,.5);
+            border-radius: 0px 0px 15px 0px;
+            color: #fff;
+            padding: 10px 30px;
+            z-index: 10;
+        }
+        i.fas{
+            color: #fff;
+            font-size: 30px;
+            padding: 14px;
+            background: rgba(0,0,0,.5);
+            position: absolute;
+            top: 125px;
+        }
+        .fa-angle-right{right: 0px;}
+        img{width: 100%;}
+    </style>
+</head>
+<body>
+    <article>
+        <p>
+            <span id="page"></span>
+            <i class="fas fa-angle-left" id="left_btn"></i>
+            <i class="fas fa-angle-right" id="right_btn"></i>
+        </p>
+        <img src="./images/tour1.avif" alt="tour1" id="trip">
+    </article>
+    <script>
+        let n = 1;
+        const l_btn = document.getElementById('left_btn');
+        const r_btn = document.getElementById('right_btn');
+
+        let page_n = document.getElementById('page');
+
+        page_n.innerHTML = n +'/5';
+
+
+
+        l_btn.addEventListener('click', function(){
+            if(n==1){     //n이 1일 경우
+                n = 5;    //n은 5다
+            }else{        //n이 1이 아니면
+                n --;     //증감연산자 : n에 1씩 감소한다
+            }
+            page_n.innerHTML = n+'/5';                                        //html 요소를 변경
+            document.getElementById('trip').src='./images/tour'+n+'.avif';    //id를 찾아서 변환
+        });
+        r_btn.addEventListener('click', function(){          //여러개의 이벤트 등록가능.따로따로작성
+            if(n==5){
+                n = 1;
+            }else{
+                n ++;
+            }
+            page_n.innerHTML = n+'/5';
+            document.getElementById('trip').src='./images/tour'+n+'.avif';
+        });
+    </script>
+</body>
+</html>

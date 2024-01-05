@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제어문활용한쇼핑몰탭메뉴 구현하기</title>
+    <style>
+        .product *{margin: 0px; padding: 0px;}
+        .photo{
+            width: 470px; 
+            border: 3px solid #000;
+            overflow: hidden;
+        }
+        .photo > img{
+            width: 100%;
+            height: 470px;
+        }
+        .photo ul{display: flex;}
+        .photo ul li{list-style: none;}
+        .photo ul li img{
+            width: 94px; 
+            box-sizing: border-box;
+            border: 3px solid rgba(188, 188, 188, .9);
+        }
+        /* .photo ul li a:focus{border: 2px solid rgb(255,0,0);} */
+    </style>
+</head>
+<body>
+    <h2>제어문 활용한 쇼핑몰 탭메뉴 구현하기</h2>
+    <p>탭콘텐츠(tab_content) : <br>
+    제한된 공간 안에서 메뉴 클릭 시 해당 영역 안에서만 콘텐츠 내용이 보이도록 함.<br>
+    여러개의 메뉴를 통해 다양한 내용을 보여주는 장점.</p>
+    <p>css로는 라디오버튼을 통해 제작가능. javascript에서는 반복문을 통해 제작 가능. jQuery에서는 '문서객체조작'메서드 통해 제작 가능.</p>
+
+    <h3>cjmall 슈즈 상품 탭 콘텐츠</h3>
+    <p>이미지 5장을 사용하여 썸네일 이미지 클릭 시 해당 사진 나타내기</p>
+
+    <section class="product">
+        <article class="photo">
+            <img src="./images/item1.jpg" alt="사진1" id="big_img">
+
+            <!-- 썸네일 이미지버튼 -->
+            <ul>
+                <li><img src="./images/item1.jpg" alt="썸네일" class="small"></li>
+                <li><img src="./images/item2.PNG" alt="썸네일" class="small"></li>
+                <li><img src="./images/item3.PNG" alt="썸네일" class="small"></li>
+                <li><img src="./images/item4.PNG" alt="썸네일" class="small"></li>
+                <li><img src="./images/item5.PNG" alt="썸네일" class="small"></li>
+            </ul>
+        </article>
+    </section>
+    
+    <script>
+        //큰 사진 변경하기 위한 변수 저장하기
+        let b_img = document.querySelector('#big_img');   // 
+
+        //작은 썸네일 사진을 변수로 저장하기
+        let s_img = document.querySelectorAll('.small');  // 모두선택
+        // document.getElementsByClassName
+
+        //반복문으로 li안에있는 img를 개별적으로 선택하여  '클릭'이벤트 5번 실행하기  = a태그 없이 반복문으로 clik이벤트 반복하기
+        for(let i=0;i<s_img.length;i++){           //length : 이미지의 개수만큼 반복  ex. 글자개수체크 등  100자
+            console.log(s_img[i]);                 //[i]=5 : 5번나옴 : 배열객체
+            s_img[i].addEventListener('click', function(){
+                // window.alert('클릭이벤트실행');
+                let src = this.src;                //사용자가 선택한 이미지의 src값을 가져와서 변수에 담는다
+                console.log(src);                  //이미지 src값 확인(콘솔창에 확인)
+
+                //src변수값을 big_img에 대입
+                b_img.setAttribute('src',src);      //src속성값으로 대체        
+                
+                
+                for(let j=0;j<s_img.length;j++){
+                    console.log(s_img[j]);        //현재선택한 썸네일 이미지 콘솔로 확인
+                    s_img[j].style.border='none'; //기존의 선 속성은 테두리색상 투명하게해서 안보이게
+                    this.style.border='3px solid rgba(188, 188, 188, .9)';  //선택한 img만 선 속성 적용
+                }
+            });
+        }
+    </script>
+</body>
+</html>

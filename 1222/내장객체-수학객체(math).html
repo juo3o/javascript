@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내장객체_ 수학객체</title>
+    <style>
+        .banner{
+            width: 420px;
+            height: 240px;
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+        .banner img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h2>내장객체_ 수학(math)객체</h2>
+    <p>수학객체는 다른 내장객체와 다르게 new 키워드를 사용하지 않는 '정적인 개체'</p>
+    <p>객체는(object)는 메서드, 속성으로 나눠진다.</p>
+    <p>메서드(동사) : 기능적인 동작. write();  </p>
+    <p>속성(명사) : 서식. 정해진 기능.   .style.color='서식내용' </p>
+
+    <h3>수학객체의 속성들</h3>
+    <ul>
+        <li>e : 상수를 구함</li>
+        <li>PI : 원주율</li>
+        <li>SQRT2</li>
+        <li>SQRT1_2</li>
+        <li>LN2</li>
+        <li>LN10</li>
+        <li>LOG2E</li>
+        <li>LOG10E</li>
+    </ul>
+    <hr>
+    <h3>수학객체의 메서드 종류</h3>
+    <ul>
+        <li>max(숫자1, 숫자2, 숫자3...) : 숫자중에서 최대값을 반환</li>
+        <li>min(숫자1, 숫자2, 숫자3...) : 숫자중에서 최소값을 반환</li>
+        <li>round(숫자) : 소수점 첫째 자리를 반올림</li>
+        <li>ceil(숫자) : 소수점 자리를 무조건 올림</li>
+        <li>floor(숫자) : 소수점 자리를 무조건 절삭</li>
+        <li>abs(숫자) : 수의 절대값을 반환</li>
+        <li>random(숫자) : 0과 1사이의 난수를 표시</li>
+    </ul>
+    
+    <script>
+        //1. 수학객체 메서드 사용하기
+        let a, b, c;
+        a = 10;
+        b = 50;
+        c = 0.46789;
+
+        let max = Math.max(a,b);         // a와 b중 최대값을 구하여 max 변수에 저장한다.
+        let min = Math.min(a,b);         // a와 b중 최소값을 구하여 min 변수에 저장한다.
+        let round = Math.round(c);       // 소수점 첫째자리에서 반올림 (5이상일때)
+        let ceil = Math.ceil(c);         // 소수점 첫째자리 있으면 무조건 올림
+        let floor = Math.floor(c);       // 소수점 이하는 무조건 버림
+        let abs = Math.abs(-123.45678);  // 음수가 양수로 전환(절대값)
+        let random = Math.random();      // 0과 1사이 난수를 무작위로 뽑음
+
+        //출력하기
+        document.write(`최대값 : ${max}<br>`);
+        document.write(`최소값 : ${min}<br>`);
+        document.write(`반올림 : ${round}<br>`);
+        document.write(`무조건 올림 : ${ceil}<br>`);
+        document.write(`무조건 절삭 : ${floor}<br>`);
+        document.write(`절대값 : ${abs}<br>`);
+        document.write(`난수 출력 (0.무작위 숫자 추출) : ${random}`);
+    </script>
+
+
+
+
+
+    <hr>
+
+
+    
+    <h3>1~4까지 난수를 구하여 랜덤으로 bannerN.jpg에 대입</h3>
+    <div class="banner">
+        <img src="./img/banner1.jpg" alt="배너광고" id="banner_img">
+    </div>
+
+    <script>
+        let ran_number = Math.ceil(Math.random()*4);  // 1-4까지 나오게. 
+        // let ran_number = Math.floor(Math.random()*4+1);
+        document.write(ran_number);
+
+        document.getElementById('banner_img').src='./img/banner'+ran_number+'.jpg';
+
+    </script>
+</body>
+</html>

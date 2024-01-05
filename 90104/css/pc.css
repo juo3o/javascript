@@ -1,0 +1,126 @@
+@charset "utf-8";
+
+@media screen and (min-width:1200px){
+
+    body{
+        
+        header{
+            width: 100%; height: 150px;
+            position: absolute;
+            z-index: 99999;
+        }
+        #toggle{display: none;}
+        header h1{
+            width: 300px;
+            position: absolute;
+            top: 40px; left: 3%;
+        }
+        header h1 img{width: 100%;}
+
+
+
+
+
+/* 내비게이션 서식 */
+        .gnb{
+            position: absolute;
+            right: 3%; top: 40px;
+        }
+        .gnb > ul{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .gnb > ul > li{
+            margin: 0px 20px;
+            position: relative; /*서브메뉴의 기준*/
+            line-height: 40px;
+        }
+        .gnb > ul > li > a{
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+
+/* 메인서식 */
+
+        .visual{
+            position: relative; 
+            height: 80vh;  /*뷰포트하이*/
+            overflow: hidden;
+        }
+        .visual > h2{display: none;}
+        .visual > div{
+            position: absolute;
+            width: 100%;
+            top: 0px; left: 0px;
+        }
+
+        .visual > div > span{
+            font-size: 40px; color: #fff;
+            text-shadow: 0px 0px 4px #ccc;
+            font-weight: bold;
+            line-height: 50px;
+
+            position: absolute;
+            top: 280px; left: 3%;
+        }
+
+        .visual > div > img{width: 100%;}
+        .slide1{z-index: 3;}
+        .slide2{z-index: 2; display: none;}
+        .slide3{z-index: 1; display: none;}
+
+
+/* sns 서식 */
+        .visual .sns{
+            display: flex;
+            position: absolute;
+            top: 420px; left: 3%;
+            z-index: 10;
+        }
+        .visual .sns > li{
+            border: 1px solid #fff;
+            margin: 0px 8px;
+            padding: 10px 8px 6px 8px;
+            text-align: center;
+        }
+        .visual .sns li .fab{
+            color: #fff;
+            font-size: 20px;
+            width: 20px;
+
+        }
+        .visual .sns li:hover{background: #fff;}
+        .visual .sns li:hover .fab{color: #ff8900;}
+
+/* 좌우버튼 서식 */
+        .visual .s_btn{
+            display: flex;
+            position: absolute;
+            top: 70%; left: 3%;
+            z-index: 20;
+        }
+        .visual .s_btn > li{
+            background: #fff;
+            padding: 12px 6px;
+            margin-right: 10px;
+        }
+
+/* 컨트롤버튼 서식 */
+        .visual .ctrl_btn{
+            position: absolute;
+            right: 3%; top: 45%;
+            z-index: 20;
+        }
+        .visual .ctrl_btn li{
+            width: 15px; height: 15px;
+            border-radius: 50%;
+            background: #fff;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .visual .on{
+            background: #ff8900 !important;
+        }
+}
+

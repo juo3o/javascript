@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 _ 모바일계산기</title>
+    <style>
+        *{margin: 0px; padding: 0px;}
+        h2{padding: 20px 20px 50px 20px;}
+        div{width: 320px; background: #9ed0f4; margin: 0px auto; border: 16px solid#9ed0f4; border-radius: 15px;}
+        ul{display: flex; flex-wrap: wrap;}
+        li{list-style: none; }
+        li:hover input{background:#4faaea;}
+        li:last-child input{width: 310px; margin-top: 10px;}
+        li:nth-child(15) input{background: #4faaea; }
+
+        li > input{
+            width: 70px; height: 70px;
+            margin: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            background: #7abae8;
+            color: #104971;
+            border: 1px solid #599ac9;
+            border: none;
+            border-radius: 10px;
+        }
+
+        #result{
+            width:308px; 
+            padding: 10px 0px; 
+            text-indent: 30px; 
+            font-size: 30px; 
+            letter-spacing: 5px;
+            margin-bottom: 15px; 
+            border: none;
+            background:rgb(255, 255, 255);
+        }
+
+    </style>
+</head>
+<body>
+    <h2>실습예제 _ 모바일계산기</h2>
+    <div>
+        <ul>
+            <li><!-- 연산결과 출력 박스 -->
+                <input type="text" id="result">
+            </li>
+            <li><input type="button" value="1" onclick="cal(1)"></li>
+            <li><input type="button" value="2" onclick="cal(2)"></li>
+            <li><input type="button" value="3" onclick="cal(3)"></li>
+            <li><input type="button" value="+" onclick="cal('+')"></li>
+            <li><input type="button" value="4" onclick="cal(4)"></li>
+            <li><input type="button" value="5" onclick="cal(5)"></li>
+            <li><input type="button" value="6" onclick="cal(6)"></li>
+            <li><input type="button" value="-" onclick="cal('-')"></li>
+            <li><input type="button" value="7" onclick="cal(7)"></li>
+            <li><input type="button" value="8" onclick="cal(8)"></li>
+            <li><input type="button" value="9" onclick="cal(9)"></li>
+            <li><input type="button" value="*" onclick="cal('*')"></li>
+            <li><input type="button" value="0" onclick="cal(0)"></li>
+            <li><input type="button" value="=" onclick="result();"></li> 
+            <li><input type="button" value="/" onclick="cal('/')"></li>
+            <li><input type="button" value="." onclick="cal('.')"></li>
+            <li><input type="button" value="CLEAR" onclick="init();"></li>
+        </ul>
+    </div>
+    <script>
+        //1. 출력결과 변수 선언
+        let res = document.getElementById('result');
+
+        //2. 각 버튼 클릭 시 해당 매개변수값을 함수에 대입
+        function cal(op){
+            let outPut_v = res.value + op;  // 연산수식 만든 후 변수에 저장
+            res.value = outPut_v;
+        }
+
+        //3. = 을 누르면 result();함수가 호출되어 연산결과 출력
+        function result(){
+            res.value = eval(res.value);
+        }
+
+        //4. CLEAR 버튼 클릭 시 res 초기화하기
+        function init(){
+            res.value = "";
+        }
+    </script>
+
+</body>
+</html>

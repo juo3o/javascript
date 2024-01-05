@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리 소개와 기본문법</title>
+    <!-- 제이쿼리 라이브러리 연결하기 -->
+    <script src="./jquery-3.7.1.js"></script>
+    <!-- 제이쿼리 라이브러리 최적화 버전 -->
+    <script src="./jquery-3.7.1.min.js"></script>
+    <!-- 다운받지않고 인터넷 연결되면 사용가능 (호환성때문에 2버전 사용) : CDN 방식-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- 제이쿼리 내용작성하기 (랩퍼) -->
+    <script>
+        $(document).ready(function(){ //html문서(문서객체)가 로딩완료되면 제이쿼리로딩을 실행한다
+
+            //1. 자바스크립트로 제목서식 변경하기
+            //변수선언
+            let title01;
+            title01 = document.getElementById('title01');
+            title01.style.color='#f00';
+            title01.style.background='#eee';
+
+
+            //2. 제이쿼리 라이브러리로 제목서식 변경하기
+            $('h3').css({
+                'color':'#00f',
+                'background':'#bbb'
+            })
+            $('p').css('color','brown');
+            $('li').css('background','pink');
+
+
+            // 자바스크립트로 위 서식 만들기.....
+            // let list = document.querySelectorAll('li');
+            // for(let i=0;i<list.length;i++){
+            //     list[i].style.background='#ccc';
+            // }
+
+
+        });
+    </script>
+</head>
+<body>
+    <h2 id="title01">제이쿼리 소개와 기본문법</h2>
+    <p>제이쿼리:</p>
+    <p>자바스크립트의 생산성을 향상시켜주는 자바스크립트의 '라이브러리' 언어.</p>
+    <p>자바스크립트 라이브러리 언어 : </p>
+    <p>자주 사용하는 코드들을 재 사용할 수 있는 형태로 가공하여 프로그래밍의 효율성을 높여주는 코드들의 집합</p>
+
+    <h3>1. 제이쿼리의 특징</h3>
+    <ul>
+        <li>앨리먼트(html태그요소)를 선택하는 강력한 기능을 제공 ( css선택자보다 많음 )</li>
+        <li>선택된 앨리먼트를 제어할 수 있는 다양한 함수를 제공</li>
+        <li>자바스크립트의 자주 사용하는 기능을 라이브러리화한 언어</li>
+    </ul>
+
+    <h3>2. 제이쿼리 라이브러리 연결방법</h3>
+    <p>제이쿼리 라이브러리 파일을 직접 연결하기 <br>
+        - 제이쿼리 공식 사이트에서 라이브러리 파일(.js)을 다운로드 받기<br>
+        - html 문서의 head요소안에 직접 script 작성하여 연결
+    </p>
+
+    <p>제이쿼리 라이브러리 CDN방식으로 연결하기 <br>
+        - jquery.com페이지에서 오른쪽 '다운로드'클릭<br>
+        - 페이지로 이동하고 아래 페이지로 내려가면 'google CDN' 메뉴 클릭
+    </p>
+
+    <h3>3. 제이쿼리 문법 (작성법)</h3>
+    <ul>
+        <li>$('선택대상').메서드();</li>
+        <li>jquery('선택대상').메서드();</li>
+    </ul>
+
+    <h3>4. 제이쿼리 라이브러리에서의 $의 역할</h3>
+    <p>제이쿼리에서는 '$'기호를 맨 앞에 넣고 시작. 이것은 괄호()안에 넣을 대상을 선택하기 위함.</p>
+    <p>ex)</p>
+    <p>$('h1'), $(window), $('#id'), $("input[type='text']").... window는 객체라서 따옴표없어도됨</p>
+
+    <h3>5. 제이쿼리에서 '$'기호 안에 들어가는 대상 3가지</h3>
+    <ul>
+        <li>html태그</li>
+        <li>css선택자</li>
+        <li>자바스크립트객체 (document, window....)</li>
+    </ul>
+
+    <h3>6. 제이쿼리에서 사용하는 wrapper</h3>
+    <ul>
+        <li>$(document).ready(function(){실행할내용;});</li>
+        <li>$(function(){실행할내용;});li</li>
+        <li>밑은 옛날방식...</li>
+        <li>jquery(function(){실행할내용;});</li>
+        <li>$(function(){실행할내용;})(jquery);</li>
+    </ul>
+</body>
+</html>

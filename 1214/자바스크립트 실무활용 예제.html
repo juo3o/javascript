@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트 실무활용 예제</title>
+  <style>
+    #wrap{
+      width: 430px;
+      border: 3px solid #000;
+      margin: 0px auto;
+    }
+    #wrap header img, #wrap footer img{
+      width: 100%;
+    }
+    #wrap header img{
+      display: block;
+    }
+    #wrap nav{
+      background: #cbcbd3; text-align: center; 
+    }
+    #wrap nav img{
+      width: 80px; 
+    }
+  </style>
+  <script>
+    //위에서 스크립트 작성
+  </script>
+</head>
+<body>
+  <h2>자바스크립트 실무활용 예제</h2>
+  <p>자바스크립트를 활용하여 다양한 콘텐츠 구현하기</p>
+
+  <h3>1. 버튼을 클릭하면 해당하는 요소에 글자의 크기를 변경하기(확대, 축소)</h3>
+  <p id="p01">건강보험공단, 산업인력공단 등 사이트에서 사용하는 글자확대, 축소하기</p>
+  <input type="button" value="글자확대(30px)" onclick="document.getElementById('p01').style.fontSize='30px'">
+  <input type="button" value="글자축소(16px)" onclick="document.getElementById('p01').style.fontSize='16px'">
+
+  <input type="button" value="화면확대(+)" id="btn_plus">
+  <input type="button" value="화면축소(-)" id="btn_minus">
+  <input type="button" value="기본설정(100%)" id="btn_default">
+
+
+
+  <h3>2. 모바일 화면에서 버튼을 클릭 시 조명 끄기, 조명켜기 기능 구현하기</h3>
+  <div id="wrap">
+    <header><img src="./images/car_01.jpg" alt="" id="car"></header>
+
+    <nav id="gnb">
+      <img src="./images/light_off.png" alt="조명끄기" id="light_off">
+      <img src="./images/light_on.png" alt="조명켜기" id="light_on">
+    </nav>
+
+    <footer>
+      <img src="./images/car_03.jpg" alt="" id="footer">
+    </footer>
+  </div>
+
+  <script>
+    //아래에서 스크립트 작성
+
+
+
+
+    //실습예제 2
+
+
+    const l_off = document.getElementById('light_off');
+    const l_on = document.getElementById('light_on');
+
+    l_off.addEventListener('click', function(){
+      // window.alert('전구끄기 성공');
+      //1.header이미지 변경
+      document.getElementById('car').src='./images/car01_01.jpg';
+      //2.gnb 배경 변경
+      document.getElementById('gnb').style.backgroundImage='url(./images/btn_back.jpg)';
+      //3.footer 이미지 변경
+      document.getElementById('footer').src='./images/car01_03.jpg';
+
+    });
+
+    l_on.addEventListener('click', function(){
+      // window.alert('전구켜기 성공');
+      //1.header이미지 변경
+      document.getElementById('car').src='images/car_01.jpg';
+      //2.gnb 배경 변경
+      document.getElementById('gnb').style.background='#cbcbd3';
+      //3.footer 이미지 변경
+      document.getElementById('footer').src='./images/car_03.jpg';
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+    //실습예제 1
+
+
+    let nowZoom = 100; // 화면초기값을 변수에 저장함.
+    const btn_plus = document.getElementById('btn_plus');
+    const btn_minus = document.getElementById('btn_minus');
+    const btn_default = document.getElementById('btn_default');
+
+    //1. 화면확대하기
+    btn_plus.addEventListener('click', function(){
+      // window.alert('화면확대 버튼을 클릭하셨습니다.');
+      nowZoom = nowZoom+20;
+
+      if(nowZoom>=200){ //만약에 변수값이 200보다 커지면 
+        nowZoom=200; //200으로 설정하여 더이상 커지지 않게
+      }
+      zoom();
+    });
+
+    function zoom(){
+      document.body.style.zoom=nowZoom+'%';
+      if(nowZoom==70){
+        alert('더이상 축소하실 수 없습니다.'); //70%이하 내려갈 수 없게
+      }
+      if(nowZoom==200){
+        alert('더이상 확대하실 수 없습니다.'); //200%이사 커질수 없게
+      }
+    }
+
+    //2. 화면축소하기
+    btn_minus.addEventListener('click', function(){
+      // window.alert('화면축소 버튼을 클릭하셨습니다.');
+      nowZoom = nowZoom - 10; 
+
+      //화면 최대 축소비율 70%
+      if(nowZoom<=70){
+        nowZoom=70;
+      }
+      zoom();
+    });
+
+    //3. 원래비율로 돌리기
+    btn_default.addEventListener('click', function(){
+      // window.alert('화면비율을 원래대로 버튼을 클릭하셨습니다.');
+      nowZoom = 100;
+      zoom();
+    });
+
+  </script>
+
+</body>
+</html>

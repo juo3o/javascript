@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리_이벤트(event)</title>
+    <style>
+        /* 브라우저의 기본서식 (input태그의 테두리) 없애기*/
+        input{outline: none;}
+
+        /* 탭메뉴 서식 */
+        .t_mnu{
+            margin: 0px; padding: 0px;
+        }
+        .t_mnu > li{
+            display: inline;
+            list-style: none;
+            margin-right: 10px;
+        }
+        .t_mnu > li > a{
+            border: 1px solid#333;
+            color: #333;
+            text-decoration: none;
+            padding: 6px 10px;
+        }
+
+        /* TOP버튼 서식 */
+        *{scroll-behavior: smooth;}
+        .top{
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background: #333;
+            color: #fff;
+            padding: 30px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 20px;
+
+
+            /* 오퍼시티만하면 클릭가능함 */
+            opacity: 0%;
+            /* 콘텐츠숨기기 */
+            visibility: hidden;
+            /* 서서히 나오게 */
+            transition: 0.5s;
+            /* 무조건 위로 */
+            z-index: 99;
+        }
+
+
+        /* top버튼 나올때 서식 */
+        .act{
+            opacity: 100% !important;
+            /* 겹치는 서식 우선적용하기 */
+            visibility: visible !important;
+        }
+    </style>
+    <!-- 제이쿼리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            //1. click이벤트
+            $('.list1').click(function(){
+                $(this).css('background','#ff0');
+            });
+
+            //2. dblclick이벤트
+            $('.list2').dblclick(function(){
+                $(this).css('background','#0f0');
+            });
+
+            //3. mouseenter이벤트
+            $('.list3').mouseenter(function(){
+                $(this).css('border','3px double #00f');
+            });
+
+            //4. mouseleave이벤트
+            $('.list4').mouseleave(function(){
+                $(this).css('background','#f00');
+            });
+
+            //5. hover이벤트 : 마우스오버시 동작 / 마우스아웃시 동작 모두 가능
+            $('.list5').hover(function(){
+                $(this).css('background','#ff0');
+            },function(){
+                $(this).css('background','#fff');
+            });
+
+            //6. toggle이벤트 : 해당하는 요소에 개별적으로 각각 선택하여 서식 적용하기
+            $('.list6').toggle(function(){ 
+                $(this).next().css('background','#f00');
+            },function(){
+                $(this).next().css('background','#0f0');
+            },function(){
+                $(this).next().css('background','#00f');
+            },function(){
+                $(this).next().css('background','purple');
+            },function(){
+                $(this).next().css('background','orange');
+            });
+
+
+            //7. 다중이벤트(on) 사용하여 h3태그에 클릭시'글자빨강', 더블클릭시'배경초록'으로 변경하기
+            $('h3').on('click dblclick', function(){
+                $(this).css({
+                    'color':'#f00',
+                    'background':'#0f0'
+                })
+            });
+
+            //input태그 foucusin(), focusout() 이벤트적용하기
+            $('input').focusin(function(){
+                $(this).css('border','1px solid #00f');
+            });
+            $('input').focusout(function(){ 
+                $(this).css('border','1px solid  #ccc');
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>제이쿼리_이벤트(event)</h2>
+    <p>웹문서에서 버튼을 클릭하거나 마우스 움직이기 등 모든 행위를 '이벤트'라고함</p>
+    <p>이벤트 발생 시 실행문이 수행되도록 이벤트를 지정하는 것을 '이벤트 핸들러'라고 한다.</p>
+
+    <h3>이벤트 종류</h3>
+    <ul>
+        <li>마우스 이벤트</li>
+        <li>키보드 이벤트`</li>
+        <li>포커스 이벤트</li>
+        <li>폼양식 이벤트</li>
+        <li>윈도우 이벤트</li>
+    </ul>
+
+    <h3>이벤트 등록방법(작성법)</h3>
+    <p>1. 단독이벤트 - $('이벤트대상').이벤트메서드(function(){실행할내용;});</p>
+    <p>2. 그룹이벤트 - $('이벤트대상').on('이벤트종류1, 이벤트종류2.....',function(){실행할내용;});</p>
+
+    <h3>마우스이벤트와 폼양식 이벤트 사용하기</h3>
+    <ol>
+        <li class="list1">click - 마우스로 대상을 클릭했을 때 </li>
+        <li class="list2">dblclick - 마우스로 대상을 더블클릭했을 때</li>
+        <li class="list3">mouseenter - 마우스 오버했을 때 (=mouseover)</li>
+        <li class="list4">mouseleave - 마우스 오버했다가 뺐을 때(=mouseout)</li>
+        <li class="list5">hover - 마우스로 오버했을 때와 뺐을 때 둘다 각각 따로 이벤트 실행</li>
+        <li>focus - 마우스로 클릭해서 포커스 발생했을 때(양식에서)</li>
+        <li>blur - 폼양식에서 포커스가 해제되었을 때</li>
+        <li class="list6">toggle - 대상요소를 클릭할 때 마다 지정된 함수를 호출하여 실행함 : <strong>제이쿼리 1.8버전 이하에서만 동작됩니다.</strong></li>
+        <li>each - 개별(각각에 대하여) 처리하는 이벤트 함수</li>
+    </ol>
+    <p>http://oscarotero.com/jquery/ - API참고 사이트의 왼쪽 'SELLECTORES'에서 확인</p>
+
+    <h3>폼태그를 사용하여 양식이벤트 사용하기</h3>
+    <fieldset>
+        <legend>로그인폼</legend>
+        <p><label for="id_txt">아이디 :</label><input type="text" id="id_txt"></p>
+        <p><label for="pw_txt">패스워드 :</label><input type="password" id="pw_txt"></p>
+    </fieldset>
+
+    <h3>each함수 사용하여 메뉴 각각 개별서식 적용하기</h3>
+    <ul class="t_mnu">
+        <li><a href="#" title="메뉴1">메뉴1</a></li>
+        <li><a href="#" title="메뉴2">메뉴2</a></li>
+        <li><a href="#" title="메뉴3">메뉴3</a></li>
+        <li><a href="#" title="메뉴4">메뉴4</a></li>
+        <li></li>
+    </ul>
+
+
+
+    <script>
+        $(document).ready(function(){
+            
+
+            let t_mnu = $('.t_mnu > li > a');
+
+            // each함수 먼저쓰기
+            // 버튼 4개에 각각 개별 클릭이벤트 기능 삽입
+            t_mnu.each(function(){
+
+                $(this).click(function(){
+                    // this : 내가선택한 요소에만 적용하겠다. 부모를(li)제외한 나머지siblings(나머지li들)을 제외
+                    $(this).css('background','#ff0').parent().siblings().find('a').css('background','#ccc');
+                    return false;
+                });
+            });
+
+        });
+    </script>
+
+    
+    <h3>윈도우이벤트를 사용하여 상단 h2고정하고 풀기 / TOP버튼 보이게,숨기게 만들기</h3>
+    <a href="#" title="위로바로가기" class="top">TOP</a>
+
+    <script>
+        // css적용 후 script 내용 추가하기!!!!!!!!!
+
+
+        //자바스크립트로 구현
+        //윈도우 세로스크롤값을 활용하여 'top'보이게하고 숨기게 하기
+        
+            let scrollTop;
+            const t_btn = document.querySelector('.top');
+
+            window.addEventListener('scroll',function(){
+                scrollTop = this.pageYOffset;  //위에서 떨어진 값을 변수에 담기
+                console.log(scrollTop); //콘솔로 위치확인
+
+                if(scrollTop>=50){  //콘솔스크롤값이 50이상일때
+                    t_btn.classList.add('act'); //.act 추가
+                }else{
+                    t_btn.classList.remove('act');  //.act 제거
+                }
+            });
+
+        //제이쿼리로 구현
+        //윈도우 세로스크롤값을 활용하여 'top'보이게하고 숨기게 하기
+        $(document).ready(function(){
+            
+            let scrollTop2;
+            $(window).scroll(function(){
+                scrollTop2 = $(this).scrollTop();
+                console.log(scrollTop2);
+
+                if(scrollTop2>=50){
+                    $('.top').addClass('act');
+                }else{
+                    $('.top').removeClass('act');
+                }
+            });
+
+
+            //스크롤내리면 헤더고정 /.스크롤올리면 헤더삭제
+
+            let headerposition = document.querySelector('header');
+
+            window.addEventListener('scroll',function(){
+                scrollTop = this.pageYOffset;  //위에서 떨어진 값을 변수에 담기
+                console.log(scrollTop); //콘솔로 위치확인
+
+                if(scrollTop>=50){  //콘솔스크롤값이 50이상일때
+                    headerposition.classList.add('p_fixed'); //.헤더고정 추가
+                }else{
+                    headerposition.classList.remove('p_fixed');  //.헤더고정 제거
+                }
+            });
+
+
+
+        });
+    </script>
+
+</body>
+</html>
