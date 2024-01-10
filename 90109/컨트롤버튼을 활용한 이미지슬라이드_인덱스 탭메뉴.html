@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컨트롤버튼을 활용한 이미지슬라이드</title>
+</head>
+<style>
+    *{margin: 0px; padding: 0px;}
+    ol, ul, li{list-style: none;}
+    .product{
+        width: 350px; height: 450px;
+        border: 3px solid   #000;
+        margin: 0px auto;
+        text-align: center;
+        position: relative;
+    }
+    .product > h2{
+        text-align: center;
+        font-size: 30px;
+        padding: 10px 0px;
+    }
+    .product ul{
+        display: flex; 
+        width: 1400px; 
+        position: absolute;
+        /* margin값으로도 위치 조절 가능 */
+    }
+    .product ul li{width: 350px;}
+    .product ul img{width: 100%;}
+
+    .c_btn{
+        width:  15px; height: 15px;
+        border: 1px solid   #000;
+        display: inline-block;
+        border-radius: 50%;
+        transform: translateY(350px);
+    }
+    .act{background: #000;}
+</style>
+<body>
+    <h2>컨트롤버튼을 활용한 이미지슬라이드</h2>
+    <ol>
+        <li>이미지 350px 사진 4장을 목록태그 + 가로배치</li>
+        <li>1번사진 아래에 span태그를 사용하여 컨트롤버튼 모양을 구현</li>
+        <li>js나 제이쿼리에서 컨트롤버튼 클릭 시 각각 해당 인덱스값을 구하여 변수에 담기</li>
+        <li>컨트롤버튼 클릭시 나온 연산값 -0, -350, -700, -1050 을 각각 구하여 ul태그의 left값에 대입</li>
+    </ol>
+
+    <article class="product">
+        <h2>신제품 출시</h2>
+        <ul>
+            <li><a href="#" title=""><img src="./images/img1.png" alt="img1"></a></li>
+            <li><a href="#" title=""><img src="./images/img2.png" alt="img2"></a></li>
+            <li><a href="#" title=""><img src="./images/img3.png" alt="img3"></a></li>
+            <li><a href="#" title=""><img src="./images/img4.png" alt="img4"></a></li>
+        </ul>
+        <div>
+            <span class="c_btn act">&nbsp;</span>
+            <span class="c_btn">&nbsp;</span>
+            <span class="c_btn">&nbsp;</span>
+            <span class="c_btn">&nbsp;</span>
+        </div>
+    </article>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            //1.컨트롤버튼클릭시 인덱스값 = 0, 1, 2, 3 출력하기
+            let i;
+
+            const cbtn = $('.product div .c_btn');
+            cbtn.click(function(){
+
+                i = $(this).index();
+                console.log(i);  //0,1,2,3 순으로 확인
+
+                i = -(i*$('.product ul li').width());    //li의 width값 가져오기
+                console.log(i);  //0,-350,-700,-1050 순으로 확인
+
+                //슬라이드 목록에 대입
+                $('.product ul').animate({'left':i},500);
+                //컨트롤버튼 목록에 대입
+                $('.product div span').removeClass('act');
+                $(this).addClass('act');
+
+            });
+        });
+    </script>
+</body>
+</html>

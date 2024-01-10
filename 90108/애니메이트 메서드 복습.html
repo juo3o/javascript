@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이트 메서드 복습</title>
+</head>
+<style>
+    .box{
+        position: relative;
+        margin: 0px auto;
+        width: 478px; height: 278px;
+        border: 1px solid  #000;
+    }
+    .title , .face{position: absolute; opacity: 0;}
+    .title{
+        top: 30px; 
+        /* left:  40px; */
+        left: -140px;
+    }
+    .face{
+        right: 0px; 
+        /* bottom: 0px; */
+        bottom: -300px;
+        }
+</style>
+<body>
+    <h2>애니메이트 메서드 복습</h2>
+
+    <article class="box">
+        <h3 class="title"><img src="./images/jobs_text.gif" alt="스티브잡스"></h3>
+        <img src="./images/jobs.png" alt="스티브잡스 이미지" class="face">
+    </article>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('.title').animate({'left':'30px','opacity':'1'}, 500);
+            $('.face').delay(200).animate({'bottom':'0px','opacity':'1'}, 500);  //시간차 두고 나타내기
+        });
+    </script>
+</body>
+</html>
