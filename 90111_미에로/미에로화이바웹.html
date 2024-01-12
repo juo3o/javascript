@@ -198,10 +198,10 @@
                 });
 
 
-                      //윈도우창의 너비값 = $(window).width(); or $(window).height();
-                    //패딩값을 포함 = $(window).innerWidth();
+                //윈도우창의 너비값 = $(window).width(); or $(window).height();
+                //패딩값을 포함 = $(window).innerWidth();
 
-                    let w_width;
+                let w_width;
 
                 w_width = $(window).innerWidth();
                 console.log(w_width);
@@ -212,7 +212,24 @@
 
                     w_width = $(window).innerWidth();
                     console.log(w_width);
-                });
+
+                    //pc버전해상도일경우 배경:노랑색
+                    //tablet버전해상도일경우 배경:초록색
+                    //mobile버전해상도일경우 배경:회색
+                    if(w_width>=1025){
+                        $('body').css('background','yellow');
+                        $('header h1 img').attr('src','./images/logo2.png');
+                    }else if(w_width>=768){
+                        $('body').css('background','green');
+                        $('header h1 img').attr('src','./images/logo.png');
+                    }else{
+                        $('body').css('background','#ccc');
+                        $('header h1 img').attr('src','./images/logo.png');
+                    }
+
+
+
+                }).resize();
 
                 
             });

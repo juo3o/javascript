@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿠팡슬라이드</title>
+</head>
+<style>
+    *{margin: 0px; padding: 0px;}
+    ul, li{list-style: none;}
+
+    
+    article{position: relative; height: 450px;}
+
+    nav > ul{position: absolute; top: 9%; right: 20px; background: #fff;}
+    nav > ul > li{border:3px solid rgba(255,255,255,0);}
+    nav > ul > li:hover{border: 3px solid rgb(63, 118, 207);}
+</style>
+<body>
+    <h2>쿠팡슬라이드 예제 구현하기</h2>
+    <article>
+        <h3>쿠팡슬라이드</h3>
+        <nav>
+            <img src="./images/slide1.jpg" alt="슬라이드1" id="slide_img">
+            <ul>
+                <li><a href="./images/slide1.jpg"><img src="./images/menu1.jpg" alt="memu1"></a></li>
+                <li><a href="./images/slide2.jpg"><img src="./images/menu2.jpg" alt="memu2"></a></li>
+                <li><a href="./images/slide3.jpg"><img src="./images/menu3.jpg" alt="memu3"></a></li>
+                <li><a href="./images/slide4.jpg"><img src="./images/menu4.jpg" alt="memu4"></a></li>
+                <li><a href="./images/slide5.jpg"><img src="./images/menu5.jpg" alt="memu5"></a></li>
+                <li><a href="./images/slide6.jpg"><img src="./images/menu6.jpg" alt="memu5"></a></li>
+            </ul>
+        </nav>
+    </article>
+
+    <!-- 제이쿼리script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('nav ul li a').mouseenter(function(){
+                $('#slide_img').attr('src', $(this).attr('href'));
+            });
+        });
+
+    </script>
+</body>
+</html>
