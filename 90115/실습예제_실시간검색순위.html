@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제_실시간검색순위</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
+</head>
+<style>
+    .box{width: 350px; background: #cccccc;}
+    .boxIn{padding: 20px;}
+    .boxIn > h3{
+        border-bottom: 1px solid #fff;
+        padding-bottom: 10px; margin-bottom: 20px;
+        }
+    .boxIn ul{height: 150px; border: 1px solid rgb(238, 111, 111);}
+    .boxIn ul li{list-style: none;}
+    .boxIn a{display: block; font-size: 13px; line-height: 2rem; color: #333; text-decoration: none;}
+
+    .boxIn ul li:first-child a{font-size: 18px; line-height: 1.4rem; font-weight: bold;}
+    .boxIn ul li:nth-child(2) a{font-size: 16px; line-height: 1.4rem; margin: 7px 0px 4px 0px;}
+
+    
+
+
+    .news{background: #eee; padding: 3px 24px; width: 900px;}
+    li{list-style: none;}
+    a{text-decoration: none;color: #333;}
+    .inner{display: flex; justify-content: space-between;}
+    .inner ul{height: 20px; overflow: hidden;}
+    span{color: #ccc;}
+    .left{display: flex;}
+    .right{display: flex;}
+</style>
+<body>
+    <h2>실습예제_실시간검색순위</h2>
+    
+    <div class="box">
+        <div class="boxIn">
+            <h3>실시간검색순위</h3>
+            <ul>
+                <li><a href="#" title="keyword1">keyword1</a></li>
+                <li><a href="#" title="keyword2">keyword2</a></li>
+                <li><a href="#" title="keyword3">keyword3</a></li>
+                <li><a href="#" title="keyword4">keyword4</a></li>
+                <li><a href="#" title="keyword5">keyword5</a></li>
+                <li><a href="#" title="keyword6">keyword6</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>네이버뉴스</h2>
+
+    <div class="news">
+        <div class="inner">
+            <div class="left">
+                <p>전체언론사 <i class="fas fa-angle-down"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>&#124;</span></p>
+                <ul>
+                    <li><a href="#" title="news1">622조 투입 반도체클러스터 '세계 최대·최고'로…정부 총력지원</a></li>
+                    <li><a href="#" title="news2">용인 산단에 반도체 제조공장 5기→6기 배치…2030년 첫 가동</a></li>
+                    <li><a href="#" title="news3">평택 하천 '비취색' 오염수 최대 7만t…"방제 비용 최대 1천억"</a></li>
+                    <li><a href="#" title="news4">농협 춘천시지부, 취약계층 농업인 자녀에 학습용품 전달</a></li>
+                    <li><a href="#" title="news5">빌라 전세사기·역전세난 여파? 오피스텔 월세만 올랐다</a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <p> 뉴스스탠드 &nbsp;<span>&#124;</span>&nbsp; 뉴스홈</p>
+            </div>
+        </div>
+    </div>
+
+<!-- 제이쿼리script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        
+        //시간객체 : setInterval(함수명,반복할시간); - 일정시간마다 함수 반복 실행
+        //시간객체 : setTimeout(내용, 반복할시간); - 일정시간지난후 함수 한번 실행
+        
+        setInterval(function(){
+
+            let boxIn = $('.boxIn ul'); //목록태그부모요소
+            let boxRow = $('.boxIn ul li:first'); //첫번째 li요소 변수에 저장
+
+            let ARea = ()=> {
+                boxRow.appendTo(boxIn).show(300);  //첫li태그를 ul의 마지막요소에 자리배치
+            }
+
+            boxRow.hide(300, ARea); //boxRow 숨겨지면 ARea에 저장된 콜백함수 실행
+
+
+
+            //뉴스 롤
+            let roll = ()=> {
+                $('.inner ul li:first').appendTo($('.inner ul')).show(600);
+            }
+            $('.inner ul li:first').hide(600, roll);
+
+        }, 3000);
+
+
+
+
+
+    });
+</script>
+
+</body>
+</html>

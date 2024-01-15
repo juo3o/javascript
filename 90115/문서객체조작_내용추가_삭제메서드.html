@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문서객체조작</title>
+</head>
+<style>
+    ul{border: 1px solid #f00;}
+    .box01{background: rgb(233, 233, 102);}
+</style>
+<!-- 제이쿼리script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function(){
+        $('#btn01').click(function(){
+            $('.list01').append('<li>append로 맨뒤에 내용추가하기</li>');
+        });
+        $('#btn02').click(function(){
+            $('.list01').prepend('<li>prepend로 맨앞에 내용추가하기</li>');
+        });
+        $('#btn03').click(function(){
+            $('.list01').after('<p>after메서드로 내용추가하기</p>');
+        });
+        $('#btn04').click(function(){
+            $('.list01').before('<p>before메서드로 내용추가하기</p>');
+        });
+        $('#btn05').click(function(){
+            $('.box01').remove();  //태그를삭제하고싶을때,,<br>
+        });
+        $('#btn06').click(function(){
+            $('.box01').empty();  //입력양식 값 지울때, 박스 비울때.. 
+        })
+    });
+</script>
+<body>
+    <h2>문서객체조작_내용추가)삭제메서드</h2>
+    <p>DOM(문서객체모델)에서 문서 안의 요소에 내용을 추가하거나 삭제 가능</p>
+    <ul class="list01">
+        <li>append(); - 사용자가 선택한 요소를 기준으로 안쪽으로 맨뒤쪽에 내용추가</li>
+        <li>prepend(); - 사용자가 선택한 요소를 기준으로 안쪽으로 맨앞쪽에 내용추가</li>
+        <li>after(); - 사용자가 선택한 요소를 기준으로 바깥쪽으로 맨뒤에 내용추가</li>
+        <li>before(); - 사용자가 선택한 요소를 기준으로 바깥쪽으로 맨앞에 내용추가</li>
+    </ul>
+
+    <input type="button" value="append();" id="btn01">
+    <input type="button" value="prepend();" id="btn02">
+    <input type="button" value="after();" id="btn03">
+    <input type="button" value="before();" id="btn04">
+
+    ex. 실시간순위롤링. 뉴스속보롤링. 배너클릭시 이미지페이지 위로 나타남
+
+    <p>insertAfter(), insertBefore()를 사용하면 A앞에 B를 배치할 수 있고, B앞에 A를 배치할수도 있다<br>
+    after(), before()메소드와 기능은 같지만 사용법이 다르다</p>
+    <p>예)<br>
+        $('A').after('B'); - A요소 바깥뒤에 B내용 추가<br>
+        $('B').insertAfter('A'); - A요소 바깥뒤에 B내용 추가
+    </p>
+
+    <h3>문서객체조작 - 내용삭제 메서드(remove)</h3>
+    <p>사용자가 선택한 요소의 내용만 제거하거나, 아예 태그요소를 삭제할 수 도 있다</p>
+    <ul class="list02">
+        <li>remove(); - 사용자가 선택한 요소 제거</li>
+        <li>empty(); - 사용자가 선택한 요소의 내용만 제거</li>
+    </ul>
+
+    <div class="box01">
+        아래 remove버튼을 클릭하면 이 박스요소가 제거됩니다<br>
+        아래 empty버튼을 클릭하면 이 박스요소 안의 내용만 제거됩니다
+    </div>
+
+    <input type="button" value="remove();" id="btn05">
+    <input type="button" value="empty();" id="btn06">
+    
+</body>
+</html>
