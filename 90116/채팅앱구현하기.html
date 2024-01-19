@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>채팅앱구현하기</title>
+</head>
+<style>
+    *{margin: 0px; padding: 0px;}
+    #wrap{
+        margin: 60px 0px 0px 100px;
+        width: 400px;
+        box-shadow: 0px 2px 4px #ccc;
+    }
+    header{
+        background: #fff;
+        padding: 30px 8px 8px 8px;
+        position: relative;
+    }
+    header .btn{
+        width: 12px; height: 12px;
+        border-radius: 50%;
+        border: none;
+        position: absolute; top: 8px;
+    }
+    header #close{background: #ff6059;}
+    header #minbtn{background: #ffbf2f; left: 26px;}
+    header #maxbtn{background: #29cd42; left: 44px;}
+    header img{
+        width: 80px;
+        border: 1px solid #ccc;
+        vertical-align: middle;
+    }
+    header span{font-size: 14px; font-weight: bold; margin-left: 5px; color: #343434;}
+
+
+    /* 대화창 */
+    .chatbox{
+        height: 400px;
+        background: #d7e4f2;
+        padding: 10px;
+        position: relative;
+        overflow-y: scroll;
+    }
+    /* 말풍선 */
+    .chatbox div{
+        margin: 5px 0px;
+        max-width: 300px;
+        font-size: 14px;
+        display: inline-block;
+        position: relative;
+    }
+    .bubble01{
+        background: #fff;
+        padding: 7px 15px 7px 15px;
+        border-radius: 14px 14px 14px 0px;
+        float: left; clear: both; /*올라가지 않게*/
+    }
+    .bubble02{
+        background: #fbf858;
+        padding: 7px 15px 7px 15px;
+        border-radius: 14px 14px 0px 14px;
+        float: right; clear: both;
+    }
+    
+
+    /* 입력창 */
+    .textbox{
+        background-color: #fafafa;
+        padding: 10px;
+    }
+    .textbox textarea{
+        height: 60px;
+        width: calc(88% - 30px);/*자동으로 원하는 사이즈 구해주는 함수*/
+        border-radius: 2%;
+        background: #fff;
+        border: 0.5px solid #d7d7d7;
+        resize: none;
+        font-size: 14px;
+    }
+    #send{
+        background: #4a90e2;
+        width: 60px; height: 60px;
+        border: none;
+        color: #fff;
+        border-radius: 3px;
+        margin-left: 10px;
+        float: right;
+    }    
+
+
+</style>
+<!-- 제이쿼리script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        
+        //버튼누르면 출력
+        const send = $('#send');
+        send.click(function(){
+            let talk = $('textarea').val(); //val값 가져오기
+            // alert(talk);
+            $('.chatbox').append('<div class="bubble02">' + talk + '</div>'); //.chatbox뒤에 클래스명 같이 추가
+            $('textarea').val('');//썼던내용은 초기화('') 하기
+        });
+    });
+</script>
+<body>
+    <ul>
+        <li>속성메서드 : val()</li>
+        <li>속성메서드 : attr()</li>
+        <li>클래스조작메서드 : addClass()</li>
+    </ul>
+
+    <div id="wrap">
+        <!-- 버튼3개,사용자사진,이름 -->
+        <header>
+            <input type="button" class="btn" id="close">
+            <input type="button" class="btn" id="minbtn">
+            <input type="button" class="btn" id="maxbtn">
+            <img src="./images/m.jpg" alt="프로필이미지">
+            <span>하이</span>
+        </header>
+
+        <!-- 대화창 -->
+        <section class="chatbox">
+            <div class="bubble01">안녕</div>
+            <div class="bubble01">모하니</div>
+            <div class="bubble01">모하니</div>
+            <div class="bubble02">모하니</div>
+            <div class="bubble01">모하니</div>
+            <div class="bubble01">모하니</div>
+        </section>
+
+        <!-- 입력창 -->
+        <footer class="textbox">
+            <textarea placeholder="대화내용이 들어갑니다"></textarea>
+            <input type="button" value="전송" id="send">
+        </footer>
+    </div>
+</body>
+</html>

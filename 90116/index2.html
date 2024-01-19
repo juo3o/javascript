@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>베스킨라빈스 메인페이지</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" type="text/css">
+</head>
+<style>
+    *{margin: 0px; padding: 0px;}
+    ul, li{list-style: none;}
+    a{color: #333; text-decoration: none;}
+    body{
+        font-family: '맑은고딕',Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        color: #333;
+        }
+    header{
+        width: 100%;
+        border-top: 3px solid   #ff7c98;
+        background-image: url(./images/bg_header.gif);
+        position: absolute;
+    }
+
+    #h_top, #h_bottom{
+        width: 1200px;
+        margin: 0px auto;
+    }
+    #h_top > h1{
+        padding: 15px 0px;
+        text-align: center;
+    }
+
+    /* 마우스 오버시 펼쳐지는 박스 */
+    #h_bottom{
+        width: 100%; height: 46px;
+        border-top: 1px solid   #ccc;
+        border-bottom: 1px solid    #333;
+        background: #000;
+        
+        overflow: hidden;
+    }
+
+
+    /* 가상선택자로 nav에 밑줄만들기 */
+    #h_bottom::after{
+        display: block;
+        content: "";
+        width: 100%;
+        height: 1px;
+        background: #333;
+        position: absolute;
+        top: 178px;
+        transition: 0.5s;
+        opacity: 0;
+    }
+    /* 마우스hover하면 밑줄 나타내기 */
+    #h_bottom:hover::after{
+        opacity: 1;
+    }
+
+
+
+
+
+    /* 내비박스는 중앙정렬 */
+    #h_bottom  nav{
+        width: 1200px;
+        margin: 0px auto;
+        display: flex;
+        justify-content: space-between;
+    }
+    #h_bottom  nav > ul{
+        display: flex;
+    }
+    #h_bottom  nav > ul a{text-transform: uppercase;}
+
+    .h_inner{
+        background-color: #fff;
+        height: 46px;
+    }
+    
+    .lnb{width: 200px;}
+    .lnb > li{
+        line-height: 46px;
+        padding-left: 30px;
+    }
+    .lnb > li a{font-size: 14px; font-weight: bold;}
+
+
+    .gnb{
+        width: 1000px; 
+        justify-content: space-around; 
+    }
+    .gnb > li{
+        line-height: 46px;
+        text-align: center;
+        position: relative;
+    }
+    .sub{background: #000;}
+    .gnb > li a{
+        font-size: 15px;
+        font-weight: bold;
+        color: #3c0a0a;
+    }
+
+
+
+
+
+
+
+
+    main{padding-top: 180px;}
+
+    /* 메인슬라이드 */
+    .v_slide{
+        /* width: 1600px; height: 697px; */
+        width: 100%; height: 800px;
+        margin: 0px auto;
+        position: relative;
+        overflow: hidden;
+        }
+    .v_slide > h2{display: none;}
+    .v_slide > .slide_wrap{
+        /* width: 8000px; */
+        height: 500%;
+        }
+    .v_slide > .slide_wrap > div{
+        /* width: 1600px; */
+        width: 100%;
+        }
+    .v_slide > .slide_wrap > div img{width: 100%;}
+    .v_slide i.fas{
+        position: absolute; top: 45%; transform: translateY(-50%);
+        font-size: 30px;
+        background: rgba(255,255,255,.8);
+        color: #ff7c98;
+        padding: 20px;
+        cursor: pointer;
+        }
+    .v_slide i.fa-angle-up{right: 0px;}
+    .v_slide i.fa-angle-down{right: 0px; top: 55%;}
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        
+        //gnb에 hover시 h_bottom 높이가 커지고
+        $('.gnb').mouseenter(function(){
+            $('#h_bottom').stop().animate({'height':'320px'},500);  //stop() : 한번만 동작하게
+        });
+        //마우스아웃 시 h_bottom높이가 46px되어 숨겨짐
+        $('.gnb').mouseleave(function(){
+            $('#h_bottom').stop().animate({'height':'46px'},500);
+        });    
+    
+
+
+
+        //첫번째슬라이드 앞에 마지막슬라이드 배치
+        $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+
+        //첫번째슬라이드 가운데로 배치(왼쪽으로 -1600px 이동)
+        // $('.slide_wrap').css('padding-top','180px');
+
+        //왼쪽으로이동하는 함수
+        function moveLeft(){
+            //왼쪽으로한칸이동하고
+            $('.slide_wrap').animate({'margin-top':'-1394px-180px'},500,function(){//콜백함수
+                //왼쪽5번슬라이드를 4번슬라이드 뒤로 옮기기
+                $('.slide_wrap div:first-child').insertAfter('.slide_wrap div:last-child');
+                //왼쪽으로 2칸 밀리는현상 : 다시 -1600px만 옮기기
+                $('.slide_wrap').css('margin-top','-697px-180px');
+            });
+        }
+
+        //오른쪽으로이동하는 함수
+        function moveRight(){
+            //오른쪽으로한칸이동하고
+            $('.slide_wrap').animate({'margin-top':'0px-180px'},500,function(){//콜백함수
+                //오른쪽마지막슬라이드를 왼쪽첫번째슬라이드 앞에배치
+                $('.slide_wrap div:last-child').insertBefore('.slide_wrap div:first-child');
+                $('.slide_wrap').css('margin-top','-697px-180px');
+            });
+        }
+
+        //함수5초마다호출
+        let Timer = setInterval(moveLeft,5000);
+
+        //좌우버튼클릭시 해당함수호출
+        const slbtn = $('.v_slide i.fa-angle-up');
+        const srbtn = $('.v_slide i.fa-angle-down');
+        
+        slbtn.click(function(){
+            clearInterval(Timer);//마우스오버시 시간제거
+            moveLeft();
+        });
+        srbtn.click(function(){
+            clearInterval(Timer);//마우스오버시 시간제거
+            moveRight();
+        });
+        //자동5초함수로 두번움직임 : 시간겹치는 현상 없애기
+
+        //마우스아웃시 시간다시생성
+        $('.v_slide i.fas').mouseleave(function(){
+            clearInterval(Timer);//기존시간 없애고
+            Timer = setInterval(moveLeft, 5000); //다시 5초마다 함수호출
+        });
+
+    });
+
+    
+</script>
+<body>
+    <!-- 상단헤더영역 -->
+    <header>
+        <div id="h_top">
+            <h1>
+                <a href="index.html" title="메인페이지로바로가기">
+                    <img src="./images/logo_baskinrobbins.png" alt="상단로고">
+                </a>
+            </h1>
+        </div>
+        <div id="h_bottom">
+            <div class="h_inner">
+            <nav>
+                <ul class="lnb">
+                    <li><a href="login.html" title="로그인">login</a></li>
+                    <li><a href="join.html" title="회원가입"></a>join</li>
+                </ul>
+
+                <ul class="gnb">
+                    <li><a href="#" title="이달의신제품">이달의신제품</a>
+                        <ul class="sub">
+                            <li><a href="#" title=""><img src="./images/img_monthly_fom_220930.png" alt=""></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="menu">menu</a>
+                        <ul class="sub">
+                            <li><a href="#" title="아이스크림">아이스크림</a></li>
+                            <li><a href="#" title="아이스크림케이크">아이스크림케이크</a></li>
+                            <li><a href="#" title="음료">음료</a></li>
+                            <li><a href="#" title="커피">커피</a></li>
+                            <li><a href="#" title="디저트">디저트</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="영양성분및알레르기">영양성분 및 알레르기</a>
+                    </li>
+                    <li><a href="#" title="store">store</a>
+                        <ul class="sub">
+                            <li><a href="#" title="매장찾기">매장찾기</a></li>
+                            <li><a href="#" title="고객센터">고객센터</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" title="about">about</a>
+                        <ul class="sub">
+                            <li><a href="#" title="공지사항">공지사항</a></li>
+                            <li><a href="#" title="보도자료">보도자료</a></li>
+                            <li><a href="#" title="채용정보">채용정보</a></li>
+                            <li><a href="#" title="점포개설문의">점포개설문의</a></li>
+                            <li><a href="#" title="contact us">contact us</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        </div>
+    </header>
+
+    <!-- 메인콘텐츠영역 -->
+    <main>
+        <article class="v_slide">
+            <h2>메인슬라이드</h2>
+            <div class="slide_wrap">
+                <div><a href="#" title=""><img src="./images/slide01.png" alt=""></a></div>
+                <div><a href="#" title=""><img src="./images/slide02.png" alt=""></a></div>
+                <div><a href="#" title=""><img src="./images/slide3.jpg" alt=""></a></div>
+                <div><a href="#" title=""><img src="./images/slide4.jpg" alt=""></a></div>
+                <div><a href="#" title=""><img src="./images/slide5.jpg" alt=""></a></div>
+            </div>
+            <i class="fas fa-angle-up"></i>
+            <i class="fas fa-angle-down"></i>
+
+        </article>
+    </main>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://design2010.dothome.co.kr/jquery_class/02_jquery/coupang/slide.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+	<title>쿠팡_실습예제</title>
+
+		<style>
+			*{margin:0px; padding:0px;}
+			.b_box{
+				width: 100%;
+				height: 340px;
+				position: relative; /* 자식요소의 기준 */
+			}
+			.banner_bg{
+				position: absolute;
+				box-shadow: 0 4px 5px rgb(0 0 0 / 30%);
+			}
+			.nav_area{
+				position: relative;
+				width: 1020px;
+				height: 450px;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			nav{
+				position: absolute;
+				right: 10px;
+				top: 45px;
+				box-shadow: 0 4px 5px rgb(0 0 0 / 30%);
+			}
+			nav ul {padding:0px;margin:0px;}
+			nav li {list-style: none;height: 60px;border:1px solid #ffffff;}
+			nav a {display: block;}
+			nav li:hover{border:1px solid #4285f4;}
+			img{ overflow-clip-margin: content-box; overflow: clip;}
+
+			.act{border:1px solid #4285f4 !important;}
+		</style>
+		<!--제이쿼리 라이브러리 연결 1.직접다운로드 파일 2.CDN방식-->
+		<script src="./쿠팡_실습예제_files/jquery.min.js.다운로드"></script>
+		<script>
+			$(function(){
+
+				//1.const
+				const nav = $('nav > ul  > li > a'); //메뉴 변수선언
+
+				//2.사용자가 마우스 오버하면 그 해당하는 a의 href속성값을 출력하기
+				nav.mouseenter(function(){
+					let url = $(this).attr('href');
+					console.log(url);
+					$('.banner_bg').attr('src',url);
+				});
+
+				let n = $('nav ul li').index()+1; //메뉴목록의 인덱스값을 구하여 변수에 담는다. 1이 나오게....
+				console.log(n); //1이 나와야함... 이미지파일명이 1부터 시작되니까
+
+				function moveSlide(){
+					$('nav ul li').removeClass('act'); //현재 메뉴목록에 테두리 서식을 적용
+
+					if(n==6){ //만약에 마지막 이미지라면
+						n=1; //첫번째 이미지가 나오도록 한다.
+					}else{ //그렇지 않으면
+						n++; //다음이미지가 나오도록 1씩 더한다.
+					}
+					console.log(n); //출력해보기
+
+					$('.banner_bg').attr('src','./images/0'+n+'.jpg'); //번호에 해당하는 이미지가 변경되고
+					$('nav ul li').eq(n-1).addClass('act'); //메뉴 서식도 같이 변경되도록 한다.
+				};
+
+				let Timer = setInterval(moveSlide, 3000); //자동으로 변경되도록 한다.
+
+				$('nav ul li').hover(function(){ //메뉴에 마우스 오버시
+					clearInterval(Timer); //시간을 제거해서 멈추게 하고
+					$('nav ul li').removeClass('act'); //테두리 서식도 제거하고
+				},function(){ //마우스 빼면
+					n = $(this).index(); //다시 인덱스값을 구하여 변수에 숫자를 담고
+					Timer = setInterval(moveSlide, 3000); //시간을 생성하여 다시 자동으로 움직이게
+					$('nav ul li').eq(n).addClass('act'); //현재 마우스를 뺀 메뉴에 서식을 적용한다. 
+				});
+
+			});
+		</script>
+</head>
+<body>	
+	<article class="b_box">
+		<img src="./쿠팡_실습예제_files/05.jpg" alt="" class="banner_bg">
+		<div class="nav_area">
+			<nav>
+				<ul>
+					<li class=""><a href="http://design2010.dothome.co.kr/jquery_class/02_jquery/coupang/images/01.jpg" title=""><img src="./쿠팡_실습예제_files/01_s.jpg" alt=""></a></li>
+					<li class=""><a href="http://design2010.dothome.co.kr/jquery_class/02_jquery/coupang/images/02.jpg" title=""><img src="./쿠팡_실습예제_files/02_s.jpg" alt=""></a></li>
+					<li class=""><a href="http://design2010.dothome.co.kr/jquery_class/02_jquery/coupang/images/03.jpg" title=""><img src="./쿠팡_실습예제_files/03_s.jpg" alt=""></a></li>
+					<li class=""><a href="http://design2010.dothome.co.kr/jquery_class/02_jquery/coupang/images/04.jpg" title=""><img src="./쿠팡_실습예제_files/04_s.jpg" alt=""></a></li>
+					<li class="act"><a href="./쿠팡_실습예제_files/05.jpg" title=""><img src="./쿠팡_실습예제_files/05_s.jpg" alt=""></a></li>
+					<li class=""><a href="http://design2010.dothome.co.kr/jquery_class/02_jquery/coupang/images/06.jpg" title=""><img src="./쿠팡_실습예제_files/06_s.jpg" alt=""></a></li>
+				</ul>
+			</nav>
+		</div>
+	</article>
+
+</body></html>
